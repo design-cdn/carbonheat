@@ -261,6 +261,7 @@ onUnmounted(() => {
   align-items: stretch;
   gap: 16px;
   width: max-content;
+  margin: 0 auto;
   padding-bottom: 40px;
 }
 
