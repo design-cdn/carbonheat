@@ -184,6 +184,7 @@ onUnmounted(() => {
   display: flex;
   gap: 20px;
   width: max-content;
+  margin: 0 auto;
 }
 
 .proj-slide {
