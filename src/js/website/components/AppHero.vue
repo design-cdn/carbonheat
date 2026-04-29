@@ -55,6 +55,9 @@ onMounted(async () => {
 
   const { grp, buildingInfo, startPos, lookTarget } = loadResult;
 
+  // Expose scene for CTA canvas to share the same scene
+  window.__chScene = scene3.getScene();
+
   buildEdges(grp);
   mep.build(scene3.getScene());
 
@@ -79,6 +82,7 @@ onUnmounted(() => {
   if (mep)    mep.dispose(scene3?.getScene());
   if (scene3) scene3.destroy();
   edgeLines = [];
+  window.__chScene = null;
 });
 
 function buildEdges(grp) {
@@ -104,7 +108,6 @@ function buildEdges(grp) {
 .hero {
   height: 100vh;
   position: relative;
-  overflow: hidden;
 }
 
 #three-canvas {
@@ -133,12 +136,12 @@ function buildEdges(grp) {
   left: 50%;
   transform: translateX(-50%);
   z-index: 10;
-  width: 70%;
+  width: min(80%, 1312px);
   text-align: center;
-  padding: 0 48px;
 }
 
 .headline {
+  padding: 0 56px;
   font-size: clamp(32px, 5vw, 80px);
   font-weight: 700;
   line-height: 1.04;

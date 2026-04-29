@@ -25,30 +25,27 @@ const canvasEl  = ref(null);
 
 let renderer = null;
 let camera   = null;
-let scene    = null;
 let animId   = null;
 let angle    = 0;
 let io       = null;
 
-// We share the parent scene if exposed on window; otherwise skip
+function getScene() {
+  return window.__chScene || null;
+}
+
 function initRenderer() {
   if (renderer) return;
+  const scene = getScene();
+  if (!scene) return;
+
   try {
     const canvas = canvasEl.value;
-    renderer = new THREE.WebGLRenderer({ canvas, antialias: false, alpha: true });
+    renderer = new THREE.WebGLRenderer({ canvas, antialias: false, alpha: false });
     renderer.setClearColor(0x031739, 1);
 
-    camera = new THREE.PerspectiveCamera(75, canvas.offsetWidth / (canvas.offsetHeight || 600), 0.01, 1000);
-    camera.position.set(3, 1, 2);
+    camera = new THREE.PerspectiveCamera(75, 1, 0.01, 1000);
+    camera.position.set(3, 0.8, 2.5);
     camera.lookAt(0, 0, 0);
-
-    // Use parent scene exposed by useThreeScene (if available)
-    // Fallback: simple ambient scene
-    scene = new THREE.Scene();
-    scene.add(new THREE.AmbientLight(0x405070, 3));
-    const dir = new THREE.DirectionalLight(0x8aaabb, 2);
-    dir.position.set(1, 2, 1.5);
-    scene.add(dir);
 
     resize();
     tick();
@@ -58,17 +55,18 @@ function initRenderer() {
 }
 
 function resize() {
-  if (!renderer) return;
+  if (!renderer || !canvasEl.value) return;
   const canvas = canvasEl.value;
   const w = canvas.offsetWidth;
-  const h = canvas.offsetHeight || 400;
+  const h = canvas.offsetHeight || 600;
   renderer.setSize(w, h, false);
-  camera.aspect = w / h;
-  camera.updateProjectionMatrix();
+  if (camera) { camera.aspect = w / h; camera.updateProjectionMatrix(); }
 }
 
 function tick() {
   animId = requestAnimationFrame(tick);
+  const scene = getScene();
+  if (!scene || !renderer) return;
   angle += 0.0015;
   const r = 2.5;
   camera.position.set(Math.sin(angle) * r, 0.8, Math.cos(angle) * r);

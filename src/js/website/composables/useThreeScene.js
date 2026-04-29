@@ -18,7 +18,7 @@ export function useThreeScene() {
         renderer.toneMappingExposure = 1.0;
 
         scene = new THREE.Scene();
-        scene.background = new THREE.Color(0x020d1a);
+        scene.background = new THREE.Color(0x031739);
 
         // Temporary camera — updated after model loads with real positions
         camera = new THREE.PerspectiveCamera(38, canvas.clientWidth / canvas.clientHeight, 0.01, 1000);
