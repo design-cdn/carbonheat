@@ -35,9 +35,15 @@ export function useThreeScene() {
         controls.panSpeed = 0.6;
         controls.autoRotate = false;
         controls.autoRotateSpeed = 0.4;
+        controls.enableZoom = false;
         controls.minDistance = 5;
         controls.maxDistance = 200;
         controls.update();
+
+        // Re-dispatch wheel events so the page can scroll
+        canvas.addEventListener('wheel', e => {
+            window.dispatchEvent(new WheelEvent('wheel', e));
+        }, { passive: true });
 
         // Minimal lights — building meshes will be nearly invisible anyway
         const ambient = new THREE.AmbientLight(0xffffff, 0.3);

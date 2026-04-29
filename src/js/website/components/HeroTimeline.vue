@@ -5,22 +5,21 @@
       <div
         class="st-item"
         :class="{
-          active:   activeSys === i,
-          done:     activeSys > i && activeSys < SYSTEMS.length,
+          active:     activeSys === i,
+          done:       activeSys > i && activeSys < SYSTEMS.length,
           'all-done': activeSys >= SYSTEMS.length,
         }"
         :style="{ '--stc': '#' + sys.color.toString(16).padStart(6, '0') }"
       >
-        <div class="st-dot"></div>
-        <span class="st-label">{{ abbrs[locale][i] }}</span>
+        <div class="st-dot">
+          <i :class="'ph ' + icons[i]"></i>
+        </div>
+        <div class="st-text">
+          <span class="st-label">{{ labels[locale][i] }}</span>
+          <span class="st-sublabel">{{ sublabels[locale][i] }}</span>
+        </div>
       </div>
     </template>
-
-    <div class="st-line"></div>
-    <div class="st-item st-extra" :class="{ 'all-done': activeSys >= SYSTEMS.length }">
-      <div class="st-dot"></div>
-      <span class="st-label">{{ t('sys.other') }}</span>
-    </div>
   </div>
 </template>
 
@@ -32,102 +31,130 @@ defineProps({
   activeSys: { type: Number, default: -1 },
 });
 
-const { t, locale } = useI18n();
+const { locale } = useI18n();
 
-const abbrs = {
-  ro: ['ELECTRIC', 'HVAC', 'SANITAR', 'INCENDIU', 'BMS'],
-  en: ['ELECTRIC', 'HVAC', 'SANITARY', 'FIRE',    'BMS'],
+const icons = ['ph-lightning', 'ph-wind', 'ph-drop', 'ph-fire-extinguisher', 'ph-cpu'];
+
+const labels = {
+  ro: ['Instalații Electrice', 'Ventilație & AC', 'Instalații Sanitare', 'Stingere Incendiu', 'BMS & Automatizare'],
+  en: ['Electrical Systems',   'HVAC & Climate',  'Sanitary Systems',    'Fire Suppression',  'BMS & Automation'],
+};
+
+const sublabels = {
+  ro: ['Curenți tari', 'VAC', 'Apă & Canalizare', 'Stingere & Detecție', 'Control clădire'],
+  en: ['Power systems', 'Air handling', 'Plumbing', 'Suppression & Detection', 'Building control'],
 };
 </script>
 
 <style scoped>
 .sys-timeline {
   display: flex;
-  align-items: center;
+  align-items: stretch;
   justify-content: center;
-  gap: 0;
-  margin-top: 40px;
+  margin-top: 48px;
   opacity: 0;
-  pointer-events: none;
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 0;
+  overflow: hidden;
   animation: stFadeIn 0.8s ease 3.4s forwards;
 }
 
 @keyframes stFadeIn { to { opacity: 1; } }
 
 .st-item {
+  flex: 1;
   display: flex;
   align-items: center;
-  gap: 0;
+  gap: 16px;
+  padding: 28px 24px;
+  min-width: 0;
   position: relative;
+  transition: background 0.3s;
 }
 
-/* Vertical bar — NOT a circle */
+.st-item:hover { background: rgba(255, 255, 255, 0.03); }
+.st-item.active { background: rgba(255, 255, 255, 0.05); }
+
 .st-dot {
-  width: 1.5px;
-  height: 22px;
-  background: rgba(255, 255, 255, 0.18);
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-shrink: 0;
-  transition: background 0.4s, box-shadow 0.4s, height 0.3s;
+  font-size: 22px;
+  color: rgba(255, 255, 255, 0.4);
+  transition: border-color 0.4s, color 0.4s, background 0.4s, box-shadow 0.4s;
 }
 
 .st-item.active .st-dot {
-  background: var(--stc);
-  box-shadow: 0 0 10px var(--stc);
-  height: 32px;
+  border-color: var(--stc);
+  color: var(--stc);
+  background: color-mix(in srgb, var(--stc) 12%, transparent);
+  box-shadow: 0 0 16px color-mix(in srgb, var(--stc) 30%, transparent);
 }
 
 .st-item.done .st-dot {
-  background: rgba(255, 255, 255, 0.35);
-  height: 22px;
+  border-color: rgba(255, 255, 255, 0.25);
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .st-item.all-done .st-dot {
-  background: var(--stc);
-  box-shadow: 0 0 8px var(--stc);
-  height: 28px;
+  border-color: var(--stc);
+  color: var(--stc);
+  background: color-mix(in srgb, var(--stc) 8%, transparent);
+}
+
+.st-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  overflow: hidden;
 }
 
 .st-label {
-  font-size: 11px;
+  font-size: 15px;
   font-weight: 600;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.28);
+  color: rgba(255, 255, 255, 0.25);
   white-space: nowrap;
-  margin-left: 14px;
-  font-family: 'Outfit', sans-serif;
+  overflow: hidden;
+  text-overflow: ellipsis;
   transition: color 0.4s;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+  font-family: 'Outfit', sans-serif;
 }
 
-.st-item.active .st-label  { color: rgba(255, 255, 255, 0.95); }
-.st-item.done .st-label    { color: rgba(255, 255, 255, 0.38); }
-.st-item.all-done .st-label { color: rgba(255, 255, 255, 0.90); }
+.st-sublabel {
+  font-size: 14px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.2);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color 0.4s;
+  line-height: 1.3;
+  font-family: 'Outfit', sans-serif;
+}
+
+.st-item.active .st-label  { color: #fff; }
+.st-item.active .st-sublabel { color: rgba(255, 255, 255, 0.65); }
+.st-item.done .st-label    { color: rgba(255, 255, 255, 0.35); }
+.st-item.done .st-sublabel { color: rgba(255, 255, 255, 0.2); }
+.st-item.all-done .st-label { color: #fff; }
+.st-item.all-done .st-sublabel { color: rgba(255, 255, 255, 0.55); }
 
 .st-line {
-  height: 1px;
-  width: clamp(24px, 4vw, 60px);
+  width: 1px;
   background: rgba(255, 255, 255, 0.08);
-  margin: 0 10px;
+  align-self: stretch;
   flex-shrink: 0;
-  transition: background 0.4s;
-}
-
-.st-extra .st-dot {
-  background: rgba(255, 255, 255, 0.10);
-  height: 16px;
-}
-
-.st-extra .st-label {
-  color: rgba(255, 255, 255, 0.20);
-  letter-spacing: 0.22em;
-}
-
-.st-extra.all-done .st-dot {
-  background: rgba(255, 255, 255, 0.25);
-  box-shadow: none;
-}
-
-.st-extra.all-done .st-label {
-  color: rgba(255, 255, 255, 0.45);
 }
 </style>
