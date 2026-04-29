@@ -130,12 +130,13 @@ export function useThreeScene() {
     }
 
     function onResize() {
-        const canvas = renderer.domElement;
-        const w = canvas.clientWidth;
-        const h = canvas.clientHeight;
-        camera.aspect = w / h;
-        camera.updateProjectionMatrix();
-        renderer.setSize(w, h, false);
+        requestAnimationFrame(() => {
+            const w = window.innerWidth;
+            const h = window.innerHeight;
+            camera.aspect = w / h;
+            camera.updateProjectionMatrix();
+            renderer.setSize(w, h, false);
+        });
     }
 
     function getCamera()   { return camera; }

@@ -61,7 +61,7 @@ onMounted(async () => {
   buildEdges(grp);
   mep.build(scene3.getScene());
 
-  const endPos = new THREE.Vector3(0.5, 5.2, -15.5);
+  const endPos = new THREE.Vector3(0, 5.2, -15.5);
 
   intro = useIntroAnimation({
     getCamera:   scene3.getCamera,

@@ -46,7 +46,7 @@ const { t } = useI18n();
 <style scoped>
 .features-strip {
   position: relative;
-  margin-top: -160px;
+  margin-top: -220px;
   padding-top: 80px;
   padding-bottom: 80px;
   z-index: 2;
