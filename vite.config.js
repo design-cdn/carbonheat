@@ -5,5 +5,10 @@ export default defineConfig({
     plugins: [vue()],
     server: {
         port: 5174,
+        historyApiFallback: true,
+    },
+    preview: {
+        port: 5174,
+        historyApiFallback: true,
     },
 });
