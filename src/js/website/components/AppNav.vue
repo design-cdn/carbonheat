@@ -1,6 +1,6 @@
 <template>
-  <nav :class="{ scrolled }">
-    <RouterLink to="/" class="logo">
+  <nav :class="{ scrolled, 'menu-open': menuOpen }">
+    <RouterLink to="/" class="logo" @click="closeMenu">
       <svg viewBox="0 0 129.2 30.62" fill="white" xmlns="http://www.w3.org/2000/svg" style="height:30px;display:block;flex-shrink:0" aria-label="Carbon Heat">
         <g>
           <path d="M41.59,21.06c-.85,1.02-1.96,1.51-3.21,1.51-2.68,0-4.58-1.92-4.58-4.58s1.9-4.58,4.58-4.58c1.26,0,2.39.55,3.24,1.51l-.91.68c-.66-.72-1.43-1.17-2.34-1.17-2.13,0-3.45,1.6-3.45,3.56s1.32,3.56,3.45,3.56c.94,0,1.75-.49,2.34-1.21l.87.72Z"/>
@@ -28,23 +28,79 @@
       <button class="lang-btn" @click="toggleLocale">{{ isRo ? 'EN' : 'RO' }}</button>
       <RouterLink to="/contact" class="nav-cta">{{ t('nav.cta') }} <span class="nav-cta-arrow">›</span></RouterLink>
     </div>
+
+    <button class="lang-btn lang-btn-mobile" @click="toggleLocale">{{ isRo ? 'EN' : 'RO' }}</button>
+
+    <button
+      class="burger"
+      :class="{ open: menuOpen }"
+      :aria-expanded="menuOpen"
+      aria-label="Menu"
+      @click="toggleMenu"
+    >
+      <span></span><span></span><span></span>
+    </button>
+
+    <transition name="overlay">
+      <div v-if="menuOpen" class="mobile-overlay" @click.self="closeMenu">
+        <div class="overlay-bg" aria-hidden="true">
+          <span class="orb orb-1"></span>
+          <span class="orb orb-3"></span>
+        </div>
+
+        <ul class="mobile-links">
+          <li
+            v-for="(link, i) in navLinks"
+            :key="link.to"
+            :class="{ cur: $route.path === link.to }"
+            :style="{ '--d': `${0.18 + i * 0.07}s` }"
+          >
+            <RouterLink :to="link.to" @click="closeMenu">
+              <span class="num">0{{ i + 1 }}</span>
+              <span class="label">{{ t(link.key) }}</span>
+              <span class="arrow">→</span>
+            </RouterLink>
+          </li>
+        </ul>
+
+        <div class="mobile-foot">
+          <RouterLink to="/contact" class="nav-cta" @click="closeMenu" :style="{ '--d': '0.6s' }">
+            {{ t('nav.cta') }} <span class="nav-cta-arrow">›</span>
+          </RouterLink>
+        </div>
+      </div>
+    </transition>
   </nav>
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue';
+import { ref, onMounted, onUnmounted, watch } from 'vue';
+import { useRoute } from 'vue-router';
 import { useI18n } from '../useI18n.js';
 
 const { t, isRo, toggleLocale } = useI18n();
 
 const scrolled = ref(false);
+const menuOpen = ref(false);
+const route = useRoute();
 
 function onScroll() {
   scrolled.value = window.scrollY > 60;
 }
 
+function toggleMenu() { menuOpen.value = !menuOpen.value; }
+function closeMenu() { menuOpen.value = false; }
+
+watch(menuOpen, (v) => {
+  document.body.style.overflow = v ? 'hidden' : '';
+});
+watch(() => route.path, () => closeMenu());
+
 onMounted(() => window.addEventListener('scroll', onScroll, { passive: true }));
-onUnmounted(() => window.removeEventListener('scroll', onScroll));
+onUnmounted(() => {
+  window.removeEventListener('scroll', onScroll);
+  document.body.style.overflow = '';
+});
 
 const navLinks = [
   { to: '/',                    key: 'nav.halls'      },
@@ -76,12 +132,21 @@ nav.scrolled {
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
+nav.menu-open {
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-bottom-color: transparent;
+}
+
 .logo {
   display: flex;
   align-items: center;
   text-decoration: none;
   color: inherit;
   flex-shrink: 0;
+  position: relative;
+  z-index: 2;
 }
 
 .nav-links {
@@ -175,4 +240,196 @@ nav.scrolled {
 }
 
 .nav-cta:hover .nav-cta-arrow { transform: translateX(2px); }
+
+/* ─── Burger button ─── */
+.lang-btn-mobile {
+  display: none;
+  margin-left: auto;
+  margin-right: 4px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.85);
+  letter-spacing: 0.12em;
+  padding: 8px 10px;
+  position: relative;
+  z-index: 2;
+}
+
+.burger {
+  display: none;
+  position: relative;
+  width: 44px;
+  height: 44px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  margin-left: auto;
+  z-index: 2;
+}
+
+.burger span {
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  height: 2px;
+  background: #fff;
+  border-radius: 2px;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s, top 0.4s, width 0.4s;
+}
+
+.burger span:nth-child(1) { top: 15px; }
+.burger span:nth-child(2) { top: 21px; right: 14px; }
+.burger span:nth-child(3) { top: 27px; }
+
+.burger.open span:nth-child(1) { top: 21px; transform: rotate(45deg); }
+.burger.open span:nth-child(2) { opacity: 0; transform: translateX(-12px); }
+.burger.open span:nth-child(3) { top: 21px; transform: rotate(-45deg); right: 10px; }
+
+/* ─── Mobile overlay ─── */
+.mobile-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  background: rgba(2, 13, 26, 0.96);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 100px 32px 40px;
+  overflow: hidden;
+}
+
+.overlay-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.overlay-bg .orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.55;
+  animation: orbDrift 14s ease-in-out infinite;
+}
+
+.orb-1 {
+  width: 320px; height: 320px;
+  background: #2c77fa;
+  top: -80px; left: -100px;
+  animation-delay: -2s;
+}
+.orb-3 {
+  width: 420px; height: 420px;
+  background: #10d4d8;
+  top: 40%; right: -120px;
+  animation-delay: -4s;
+  opacity: 0.4;
+}
+
+@keyframes orbDrift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50%      { transform: translate(30px, -20px) scale(1.08); }
+}
+
+.mobile-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+.mobile-links li {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  opacity: 0;
+  transform: translateY(24px);
+  animation: linkIn 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) var(--d) forwards;
+}
+
+.mobile-links li:first-child { border-top: 1px solid rgba(255, 255, 255, 0.06); }
+
+.mobile-links a {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 22px 4px;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.88);
+  font: 700 28px/1 'Outfit', sans-serif;
+  letter-spacing: -0.02em;
+  position: relative;
+  overflow: hidden;
+}
+
+.mobile-links .num {
+  font: 500 12px/1 'Outfit', sans-serif;
+  color: rgba(255, 255, 255, 0.35);
+  letter-spacing: 0.12em;
+  width: 28px;
+  flex-shrink: 0;
+}
+
+.mobile-links .label {
+  flex: 1;
+  position: relative;
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), color 0.3s;
+}
+
+.mobile-links .arrow {
+  font-size: 22px;
+  color: rgba(255, 255, 255, 0.3);
+  transform: translateX(-8px);
+  opacity: 0;
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.3s, color 0.3s;
+}
+
+.mobile-links li.cur .label { color: #2c77fa; }
+.mobile-links li.cur .arrow { color: #2c77fa; opacity: 1; transform: translateX(0); }
+
+.mobile-links a:active .label { transform: translateX(6px); }
+.mobile-links a:active .arrow { opacity: 1; transform: translateX(0); color: #fff; }
+
+.mobile-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  position: relative;
+}
+
+.mobile-foot .lang-btn,
+.mobile-foot .nav-cta {
+  opacity: 0;
+  transform: translateY(16px);
+  animation: linkIn 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) var(--d) forwards;
+}
+
+.mobile-foot .lang-btn {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 50px;
+  padding: 11px 22px;
+  letter-spacing: 0.12em;
+}
+
+.mobile-foot .nav-cta { padding: 13px 28px; font-size: 14px; }
+
+@keyframes linkIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* overlay enter/leave */
+.overlay-enter-active { transition: opacity 0.35s ease, transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1); }
+.overlay-leave-active { transition: opacity 0.3s ease, transform 0.3s ease; }
+.overlay-enter-from { opacity: 0; transform: translateY(-12px); }
+.overlay-leave-to   { opacity: 0; transform: translateY(-8px); }
+
+@media (max-width: 900px) {
+  nav { padding: 0 20px; }
+  .nav-links, .nav-right { display: none; }
+  .burger { display: block; margin-left: 0; }
+  .lang-btn-mobile { display: inline-block; }
+}
 </style>

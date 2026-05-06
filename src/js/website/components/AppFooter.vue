@@ -448,7 +448,38 @@ footer {
 
 @media (max-width: 640px) {
   .cnt { padding: 0 24px; }
+  .footer-top { padding: 64px 0; }
+  .footer-top-inner { gap: 48px; }
+  .footer-info { gap: 28px; }
+  .footer-tagline { font-size: 15px; max-width: none; }
+  .footer-form-header { margin-bottom: 28px; }
+  .footer-form-title { font-size: 28px; }
   .ff-row { grid-template-columns: 1fr; }
-  .footer-links { display: none; }
+  .ff-input { padding: 14px 18px; font-size: 15px; }
+  .ff-textarea { min-height: 120px; }
+  .ff-submit { width: 100%; justify-content: center; padding: 16px 24px; }
+
+  .footer-bottom { padding: 20px 0 28px; }
+  .footer-bottom-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+  .footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+  }
+  .footer-links a { font-size: 14px; }
+
+  .footer-legal {
+    flex-wrap: wrap;
+    gap: 8px 14px;
+    width: 100%;
+  }
+  .footer-legal span { font-size: 12px; }
+  .footer-legal a { font-size: 12px; }
+  .footer-legal-sep { display: none; }
 }
 </style>

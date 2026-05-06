@@ -313,7 +313,7 @@ const FALLBACK = {
         'nav.cta': 'Get in touch',
         'hero.overline': 'Complete fitting · Industrial halls',
         'hero.headline1': 'Complete fitting for industrial halls,',
-        'hero.headline2': 'after structural construction.',
+        'hero.headline2': ' after structural construction.',
         'sys.electric': 'Electrical Systems',
         'sys.hvac': 'HVAC & Climate',
         'sys.sanitary': 'Sanitary & Drainage',
