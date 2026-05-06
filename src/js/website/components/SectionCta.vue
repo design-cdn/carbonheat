@@ -7,7 +7,7 @@
         <p class="sec-label">{{ t('cta.label') }}</p>
         <h2 class="cta-h2">{{ t('cta.heading') }}</h2>
         <p class="cta-sub">{{ t('cta.sub') }}</p>
-        <a href="mailto:contact@carbonheat.ro" class="btn-outline">{{ t('cta.btn') }} <span style="margin-left:8px">›</span></a>
+        <a href="mailto:office@carbonheat.ro" class="btn-outline">{{ t('cta.btn') }} <span style="margin-left:8px">›</span></a>
       </div>
     </div>
   </section>

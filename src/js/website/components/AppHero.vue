@@ -154,7 +154,7 @@ function buildEdges(grp) {
 .headline span { color: #fff; }
 
 .headline em {
-  display: block;
+  display: inline;
   font-style: normal;
   font-weight: 700;
   color: #2c77fa;

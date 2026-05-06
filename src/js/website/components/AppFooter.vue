@@ -25,32 +25,32 @@
           <p class="footer-tagline">{{ t('footer.tagline') }}</p>
 
           <div class="footer-contact-list">
-            <a href="tel:+40000000000" class="footer-contact-item">
+            <a href="tel:+40786602644" class="footer-contact-item">
               <div class="fci-icon"><i class="ph ph-phone"></i></div>
               <div>
                 <div class="fci-label">{{ t('footer.phone') }}</div>
-                <div class="fci-val">+40 000 000 000</div>
+                <div class="fci-val">0786 602 644</div>
               </div>
             </a>
-            <a href="mailto:contact@carbonheat.ro" class="footer-contact-item">
+            <a href="mailto:office@carbonheat.ro" class="footer-contact-item">
               <div class="fci-icon"><i class="ph ph-envelope"></i></div>
               <div>
-                <div class="fci-label">Email</div>
-                <div class="fci-val">contact@carbonheat.ro</div>
+                <div class="fci-label">{{ t('footer.email') }}</div>
+                <div class="fci-val">office@carbonheat.ro</div>
               </div>
             </a>
             <div class="footer-contact-item">
               <div class="fci-icon"><i class="ph ph-map-pin"></i></div>
               <div>
                 <div class="fci-label">{{ t('footer.hq') }}</div>
-                <div class="fci-val">România</div>
+                <div class="fci-val">Str. Pridvorului nr. 62A et. 1, sector 4, București</div>
               </div>
             </div>
             <div class="footer-contact-item">
               <div class="fci-icon"><i class="ph ph-clock"></i></div>
               <div>
                 <div class="fci-label">{{ t('footer.schedule') }}</div>
-                <div class="fci-val">Lun–Vin, 08:00–17:00</div>
+                <div class="fci-val">{{ t('footer.hours') }}</div>
               </div>
             </div>
           </div>
@@ -93,11 +93,11 @@
               <label class="ff-label">{{ t('footer.form.line') }} *</label>
               <select class="ff-input ff-select" required>
                 <option value="">{{ t('footer.form.select') }}</option>
-                <option>Hale Industriale</option>
-                <option>Fotovoltaice</option>
-                <option>Infrastructură Grea</option>
-                <option>Automatizări Industriale</option>
-                <option>General</option>
+                <option>{{ t('footer.line.halls') }}</option>
+                <option>{{ t('footer.line.solar') }}</option>
+                <option>{{ t('footer.line.heavy') }}</option>
+                <option>{{ t('footer.line.auto') }}</option>
+                <option>{{ t('footer.line.general') }}</option>
               </select>
             </div>
             <div class="ff-field">
@@ -124,16 +124,20 @@
     <div class="footer-bottom">
       <div class="cnt footer-bottom-inner">
         <ul class="footer-links">
-          <li><RouterLink to="/">Hale Industriale</RouterLink></li>
-          <li><RouterLink to="/fotovoltaice">Fotovoltaice</RouterLink></li>
-          <li><RouterLink to="/infrastructura-grea">Infrastructură Grea</RouterLink></li>
-          <li><RouterLink to="/automatizari">Automatizări</RouterLink></li>
-          <li><RouterLink to="/despre">Despre Noi</RouterLink></li>
+          <li><RouterLink to="/">{{ t('nav.halls') }}</RouterLink></li>
+          <li><RouterLink to="/fotovoltaice">{{ t('nav.solar') }}</RouterLink></li>
+          <li><RouterLink to="/infrastructura-grea">{{ t('nav.heavy') }}</RouterLink></li>
+          <li><RouterLink to="/automatizari-industriale">{{ t('nav.automation') }}</RouterLink></li>
+          <li><RouterLink to="/despre-noi">{{ t('nav.about') }}</RouterLink></li>
         </ul>
         <div class="footer-legal">
-          <span>© 2026 Carbon Heat SRL</span>
-          <a href="#">Confidențialitate</a>
-          <a href="#">Termeni</a>
+          <span>© 2026 SC Carbon Heat Solutions SRL</span>
+          <span class="footer-legal-sep">·</span>
+          <span>CUI RO 36608956</span>
+          <span class="footer-legal-sep">·</span>
+          <span>J40/4452/2010</span>
+          <a href="#">{{ t('footer.privacy') }}</a>
+          <a href="#">{{ t('footer.terms') }}</a>
         </div>
       </div>
     </div>
@@ -419,9 +423,13 @@ footer {
 }
 
 .footer-legal span {
-  font-size: 14px;
+  font-size: 13px;
   color: rgba(255, 255, 255, 0.35);
   font-family: 'Outfit', sans-serif;
+}
+
+.footer-legal-sep {
+  color: rgba(255, 255, 255, 0.15) !important;
 }
 
 .footer-legal a {

@@ -50,8 +50,8 @@ const navLinks = [
   { to: '/',                    key: 'nav.halls'      },
   { to: '/fotovoltaice',        key: 'nav.solar'      },
   { to: '/infrastructura-grea', key: 'nav.heavy'      },
-  { to: '/automatizari',        key: 'nav.automation' },
-  { to: '/despre',              key: 'nav.about'      },
+  { to: '/automatizari-industriale', key: 'nav.automation' },
+  { to: '/despre-noi',               key: 'nav.about'      },
 ];
 </script>
 

@@ -1,36 +1,36 @@
 <template>
-  <section class="features-strip">
+  <section class="features-strip" :class="{ 'features-fade': bgFade }">
     <div class="cnt">
       <div class="fs-outer">
         <div class="fs-item">
           <div class="fs-icon"><i class="ph ph-lightning"></i></div>
           <div>
-            <div class="fs-title">{{ t('features.integrated.title') }}</div>
-            <div class="fs-sub">{{ t('features.integrated.sub') }}</div>
+            <div class="fs-title">{{ t(prefix + '.integrated.title') }}</div>
+            <div class="fs-sub">{{ t(prefix + '.integrated.sub') }}</div>
           </div>
         </div>
         <div class="fs-divider"></div>
         <div class="fs-item">
           <div class="fs-icon"><i class="ph ph-gauge"></i></div>
           <div>
-            <div class="fs-title">{{ t('features.efficiency.title') }}</div>
-            <div class="fs-sub">{{ t('features.efficiency.sub') }}</div>
+            <div class="fs-title">{{ t(prefix + '.efficiency.title') }}</div>
+            <div class="fs-sub">{{ t(prefix + '.efficiency.sub') }}</div>
           </div>
         </div>
         <div class="fs-divider"></div>
         <div class="fs-item">
           <div class="fs-icon"><i class="ph ph-shield-check"></i></div>
           <div>
-            <div class="fs-title">{{ t('features.safe.title') }}</div>
-            <div class="fs-sub">{{ t('features.safe.sub') }}</div>
+            <div class="fs-title">{{ t(prefix + '.safe.title') }}</div>
+            <div class="fs-sub">{{ t(prefix + '.safe.sub') }}</div>
           </div>
         </div>
         <div class="fs-divider"></div>
         <div class="fs-item">
           <div class="fs-icon"><i class="ph ph-globe"></i></div>
           <div>
-            <div class="fs-title">{{ t('features.future.title') }}</div>
-            <div class="fs-sub">{{ t('features.future.sub') }}</div>
+            <div class="fs-title">{{ t(prefix + '.future.title') }}</div>
+            <div class="fs-sub">{{ t(prefix + '.future.sub') }}</div>
           </div>
         </div>
       </div>
@@ -41,6 +41,13 @@
 <script setup>
 import { useI18n } from '../useI18n.js';
 const { t } = useI18n();
+
+const props = defineProps({
+  prefix: { type: String, default: 'features' },
+  bgFade: { type: Boolean, default: false },
+});
+
+const { prefix, bgFade } = props;
 </script>
 
 <style scoped>
@@ -49,7 +56,11 @@ const { t } = useI18n();
   margin-top: -220px;
   padding-top: 80px;
   padding-bottom: 80px;
-  z-index: 2;
+  z-index: 10;
+}
+
+.features-strip.features-fade {
+  background: linear-gradient(180deg, transparent 0%, transparent 35%, #020d1a 75%, #020d1a 100%);
 }
 
 .cnt {

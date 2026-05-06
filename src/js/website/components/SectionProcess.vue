@@ -21,6 +21,7 @@
           :key="i"
           class="process-card"
           :class="{ 'process-card-final': i === cards.length - 1, visible: visibleCards[i] }"
+          :style="{ '--card-accent': card.accent }"
           :ref="el => cardRefs[i] = el"
         >
           <div class="pc-num">{{ String(i + 1).padStart(2, '0') }}</div>
@@ -52,7 +53,7 @@
 </template>
 
 <script setup>
-import { ref, reactive, onMounted, onUnmounted } from 'vue';
+import { ref, reactive, computed, onMounted, onUnmounted } from 'vue';
 import { useI18n } from '../useI18n.js';
 
 const { t } = useI18n();
@@ -63,44 +64,50 @@ const visibleCards = reactive({});
 const progressPct = ref(0);
 const currentStep = ref(0);
 
-const cards = [
+const cards = computed(() => [
   {
+    accent: '#2c77fa',
     icon: 'ph-magnifying-glass',
-    title: 'Consultare & Evaluare',
-    desc: 'Vizităm șantierul, analizăm documentația structurală și identificăm cerințele specifice ale beneficiarului. Stabilim împreună scopul, bugetul orientativ și calendarul.',
-    details: ['Vizită tehnică pe teren', 'Analiză documentație structurală', 'Identificare cerințe specifice', 'Estimare orientativă'],
+    title: t('process.step0.title'),
+    desc: t('process.step0.desc'),
+    details: [t('process.step0.d0'), t('process.step0.d1'), t('process.step0.d2'), t('process.step0.d3')],
   },
   {
+    accent: '#4f46e5',
     icon: 'ph-pencil-ruler',
-    title: 'Proiectare tehnică',
-    desc: 'Elaborăm proiectele tehnice pentru fiecare specialitate — sanitare, VAC, electrice, BMS, stingere incendiu, CCTV. Coordonăm toate disciplinele într-un singur pachet coerent.',
-    details: ['Proiecte per specialitate', 'Coordonare inter-disciplinară', 'Memorii tehnice', 'Listele de materiale'],
+    title: t('process.step1.title'),
+    desc: t('process.step1.desc'),
+    details: [t('process.step1.d0'), t('process.step1.d1'), t('process.step1.d2'), t('process.step1.d3')],
   },
   {
+    accent: '#7c3aed',
     icon: 'ph-seal-check',
-    title: 'Aprobare & Contractare',
-    desc: 'Prezentăm proiectul tehnic, obținem aprobarea beneficiarului și semnăm contractul de execuție. Includem toate specialitățile sub un singur document contractual.',
-    details: ['Prezentare proiect tehnic', 'Negociere și ajustări', 'Contract unic, 11 sisteme', 'Grafic de execuție'],
+    title: t('process.step2.title'),
+    desc: t('process.step2.desc'),
+    details: [t('process.step2.d0'), t('process.step2.d1'), t('process.step2.d2'), t('process.step2.d3')],
   },
   {
+    accent: '#0891b2',
     icon: 'ph-hard-hat',
-    title: 'Execuție',
-    desc: 'Montăm toate sistemele în ordinea logică de execuție, coordonat cu antreprenorul general. Urmărim calitatea zilnic și raportăm progresul săptămânal către beneficiar.',
-    details: ['Montaj sisteme în etape logice', 'Coordonare cu antreprenorul general', 'Rapoarte săptămânale de progres', 'Control calitate zilnic'],
+    title: t('process.step3.title'),
+    desc: t('process.step3.desc'),
+    details: [t('process.step3.d0'), t('process.step3.d1'), t('process.step3.d2'), t('process.step3.d3')],
   },
   {
+    accent: '#0d9488',
     icon: 'ph-checks',
-    title: 'Testare & Punere în funcțiune',
-    desc: 'Testăm fiecare sistem separat și integrat. Efectuăm reglajele finale, probe de funcționare și verificări conform normativelor. Documentăm toate rezultatele.',
-    details: ['Teste individuale per sistem', 'Probe integrate', 'Reglaje și calibrări finale', 'Procese verbale de probe'],
+    title: t('process.step4.title'),
+    desc: t('process.step4.desc'),
+    details: [t('process.step4.d0'), t('process.step4.d1'), t('process.step4.d2'), t('process.step4.d3')],
   },
   {
+    accent: '#10d4c0',
     icon: 'ph-trophy',
-    title: 'Predare & Garanție',
-    desc: 'Predăm hala funcțională împreună cu documentația completă — cărți tehnice, scheme as-built, certificate. Asigurăm suport în perioada de garanție.',
-    details: ['Recepție la terminarea lucrărilor', 'Cărți tehnice și scheme as-built', 'Certificate de conformitate', 'Garanție și suport post-predare'],
+    title: t('process.step5.title'),
+    desc: t('process.step5.desc'),
+    details: [t('process.step5.d0'), t('process.step5.d1'), t('process.step5.d2'), t('process.step5.d3')],
   },
-];
+]);
 
 let io = null;
 
@@ -110,7 +117,7 @@ function onScroll() {
   const max = wrap.scrollWidth - wrap.clientWidth;
   const pct = max > 0 ? (wrap.scrollLeft / max) * 100 : 0;
   progressPct.value = pct;
-  currentStep.value = Math.min(Math.round((pct / 100) * (cards.length - 1)), cards.length - 1);
+  currentStep.value = Math.min(Math.round((pct / 100) * (cards.value.length - 1)), cards.value.length - 1);
 }
 
 // Drag scroll
@@ -172,6 +179,19 @@ onUnmounted(() => {
   padding: 140px 0 80px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
   overflow: visible;
+  position: relative;
+}
+
+.differentiator::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse 60% 70% at 10% 60%, rgba(44, 119, 250, 0.22) 0%, transparent 65%),
+    radial-gradient(ellipse 50% 60% at 90% 30%, rgba(16, 212, 192, 0.18) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 50% at 55% 85%, rgba(124, 58, 237, 0.15) 0%, transparent 60%);
 }
 
 .cnt {
@@ -251,6 +271,8 @@ onUnmounted(() => {
   cursor: grab;
   scrollbar-width: none;
   -ms-overflow-style: none;
+  position: relative;
+  z-index: 1;
 }
 
 .process-track-wrap::-webkit-scrollbar { display: none; }
@@ -267,9 +289,17 @@ onUnmounted(() => {
 
 .process-card {
   width: 340px;
-  background: #fff;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 12px;
+  background: linear-gradient(
+    160deg,
+    rgba(30, 65, 140, 0.55) 0%,
+    rgba(15, 35, 85, 0.65) 60%,
+    rgba(8, 20, 55, 0.7) 100%
+  );
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 8px 40px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.09);
+  border-radius: 20px;
   padding: 40px 36px;
   display: flex;
   flex-direction: column;
@@ -277,13 +307,15 @@ onUnmounted(() => {
   flex-shrink: 0;
   transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
               box-shadow 0.4s ease,
-              opacity 0.5s ease;
+              opacity 0.5s ease,
+              border-color 0.3s;
   opacity: 0;
   transform: translateY(80px) scale(0.88);
   position: relative;
   overflow: hidden;
 }
 
+/* Shimmer sweep on hover */
 .process-card::before {
   content: '';
   position: absolute;
@@ -291,13 +323,12 @@ onUnmounted(() => {
   background: linear-gradient(
     105deg,
     transparent 20%,
-    rgba(147, 197, 253, 0.12) 35%,
-    rgba(167, 139, 250, 0.10) 45%,
-    rgba(96, 165, 250, 0.14) 55%,
-    rgba(199, 210, 254, 0.08) 65%,
+    rgba(255, 255, 255, 0.05) 35%,
+    rgba(255, 255, 255, 0.09) 45%,
+    rgba(255, 255, 255, 0.05) 55%,
     transparent 80%
   );
-  border-radius: 12px;
+  border-radius: 20px;
   transform: translateX(-120%);
   z-index: 0;
   pointer-events: none;
@@ -307,11 +338,30 @@ onUnmounted(() => {
   animation: shineWipe 0.65s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
+/* Top accent gradient line */
+.process-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 10%; right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--card-accent), transparent);
+  opacity: 0.45;
+  transition: opacity 0.3s, left 0.3s, right 0.3s;
+}
+
+.process-card:hover::after {
+  opacity: 1;
+  left: 0; right: 0;
+}
+
 .process-card:hover {
-  transform: scale(1.09) translateY(-10px) !important;
-  box-shadow: 0 24px 60px rgba(0,0,0,0.2),
-              0 0 0 1px rgba(44,119,250,0.25),
-              0 30px 80px rgba(44,119,250,0.55) !important;
+  transform: scale(1.05) translateY(-8px) !important;
+  box-shadow:
+    0 32px 64px rgba(0, 0, 0, 0.45),
+    0 0 0 1px rgba(255, 255, 255, 0.13),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    0 0 50px rgba(44, 119, 250, 0.1);
+  border-color: rgba(255, 255, 255, 0.14);
   z-index: 10;
   opacity: 1 !important;
 }
@@ -329,56 +379,62 @@ onUnmounted(() => {
 }
 
 .process-track:has(.process-card:hover) .process-card:not(:hover) {
-  opacity: 0.45;
-  transform: scale(0.95) !important;
+  opacity: 0.3;
+  transform: scale(0.96) !important;
 }
 
+/* Final card — brighter teal glass */
 .process-card-final {
-  background: #2c77fa !important;
-  border-color: #2c77fa !important;
+  background: linear-gradient(
+    160deg,
+    rgba(16, 212, 192, 0.13) 0%,
+    rgba(44, 119, 250, 0.07) 60%,
+    rgba(0, 0, 0, 0.04) 100%
+  ) !important;
+  border-color: rgba(16, 212, 192, 0.18) !important;
 }
-
-.process-card-final::before { display: none !important; }
-
-.process-card-final .pc-num  { color: rgba(255,255,255,0.5); }
-.process-card-final .pc-icon { border-color: rgba(255,255,255,0.3); color: #fff; background: rgba(255,255,255,0.15); }
-.process-card-final .pc-title { color: #fff; }
-.process-card-final .pc-desc  { color: rgba(255,255,255,0.8); }
-.process-card-final .pc-details li   { color: rgba(255,255,255,0.75); }
-.process-card-final .pc-details li i { color: rgba(255,255,255,0.95); }
 
 .process-card-final:hover {
-  box-shadow: 0 24px 60px rgba(44,119,250,0.5), 0 0 0 1px rgba(255,255,255,0.2) !important;
+  box-shadow:
+    0 32px 64px rgba(0, 0, 0, 0.45),
+    0 0 0 1px rgba(16, 212, 192, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    0 0 60px rgba(16, 212, 192, 0.12) !important;
 }
 
 .pc-num {
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.2em;
-  color: rgba(0, 0, 0, 0.2);
+  color: var(--card-accent);
+  opacity: 0.75;
   font-family: 'Outfit', sans-serif;
 }
 
 .pc-icon {
   width: 72px;
   height: 72px;
-  border: 1.5px solid rgba(44, 119, 250, 0.2);
+  border: 1.5px solid rgba(255, 255, 255, 0.1);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 36px;
-  color: #2c77fa;
-  background: rgba(44, 119, 250, 0.06);
-  transition: border-color 0.3s, transform 0.3s;
+  color: var(--card-accent);
+  background: rgba(255, 255, 255, 0.03);
+  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
 }
 
-.process-card:hover .pc-icon { transform: scale(1.06); }
+.process-card:hover .pc-icon {
+  transform: scale(1.06);
+  border-color: var(--card-accent);
+  box-shadow: 0 0 24px rgba(44, 119, 250, 0.2);
+}
 
 .pc-title {
   font-size: 26px;
   font-weight: 700;
-  color: #0a1628;
+  color: #fff;
   letter-spacing: -0.02em;
   margin-bottom: 14px;
   line-height: 1.2;
@@ -387,7 +443,7 @@ onUnmounted(() => {
 
 .pc-desc {
   font-size: 16px;
-  color: rgba(0, 0, 0, 0.5);
+  color: rgba(255, 255, 255, 0.52);
   line-height: 1.75;
   font-weight: 300;
   font-family: 'Outfit', sans-serif;
@@ -403,14 +459,14 @@ onUnmounted(() => {
 
 .pc-details li {
   font-size: 14px;
-  color: rgba(0, 0, 0, 0.45);
+  color: rgba(255, 255, 255, 0.38);
   display: flex;
   align-items: center;
   gap: 8px;
   font-family: 'Outfit', sans-serif;
 }
 
-.pc-details li i { color: #2c77fa; font-size: 13px; flex-shrink: 0; }
+.pc-details li i { color: var(--card-accent); font-size: 13px; flex-shrink: 0; }
 
 .process-progress {
   display: flex;
@@ -429,7 +485,7 @@ onUnmounted(() => {
 
 .process-progress-fill {
   height: 100%;
-  background: #2c77fa;
+  background: linear-gradient(90deg, #2c77fa, #7c3aed, #10d4c0);
   border-radius: 2px;
   transition: width 0.15s;
 }

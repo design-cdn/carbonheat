@@ -17,12 +17,12 @@ const routes = [
         component: () => import('./pages/InfrastructuraGrea.vue'),
     },
     {
-        path: '/automatizari',
+        path: '/automatizari-industriale',
         name: 'automatizari',
         component: () => import('./pages/Automatizari.vue'),
     },
     {
-        path: '/despre',
+        path: '/despre-noi',
         name: 'despre',
         component: () => import('./pages/Despre.vue'),
     },

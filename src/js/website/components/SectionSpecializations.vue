@@ -4,42 +4,61 @@
     <div class="spec-content">
       <div class="cnt spec-header">
         <div class="spec-header-left">
-          <p class="sec-label">{{ t('spec.label') }}</p>
-          <h2 class="spec-big-h" v-html="t('spec.heading')"></h2>
+          <p class="sec-label">{{ t(prefix + '.label') }}</p>
+          <h2 class="spec-big-h" v-html="t(prefix + '.heading')"></h2>
         </div>
         <div class="spec-header-right">
-          <p class="spec-intro">{{ t('spec.intro') }}</p>
+          <p class="spec-intro">{{ t(prefix + '.intro') }}</p>
           <div class="spec-stat-row">
             <div class="spec-stat">
-              <span class="spec-stat-num">11</span>
-              <span class="spec-stat-label">{{ t('spec.stat1') }}</span>
+              <span class="spec-stat-num">{{ stat1Num }}</span>
+              <span class="spec-stat-label">{{ t(prefix + '.stat1') }}</span>
             </div>
             <div class="spec-stat">
-              <span class="spec-stat-num">1</span>
-              <span class="spec-stat-label">{{ t('spec.stat2') }}</span>
+              <span class="spec-stat-num">{{ stat2Num }}</span>
+              <span class="spec-stat-label">{{ t(prefix + '.stat2') }}</span>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="spec-cols-wrap">
-        <div class="spec-cols">
+      <div class="spec-cols-wrap" :class="{ 'spec-cols-wrap-3': effectiveCols.length === 3 }">
+        <div class="spec-cols" :class="{ 'spec-cols-3': effectiveCols.length === 3 }">
           <div
-            v-for="(col, i) in cols"
+            v-for="(col, i) in effectiveCols"
             :key="i"
             class="spec-col"
             :class="{ revealed: revealedCols[i] }"
+            :style="{ '--card-accent': col.accent }"
             :ref="el => colRefs[i] = el"
           >
-            <div class="spec-col-header">
-              <div class="spec-col-icon-circle"><i :class="'ph ' + col.icon"></i></div>
-              <div class="spec-col-name">{{ col.name }}</div>
+            <div class="spec-col-icon-circle"><i :class="'ph ' + col.icon"></i></div>
+            <div class="spec-col-name">{{ col.name }}</div>
+            <div class="spec-col-desc">{{ col.desc }}</div>
+          </div>
+        </div>
+      </div>
+
+      <div v-if="effectivePartnerCols.length" class="spec-partner-wrap">
+        <div class="cnt spec-partner-header">
+          <h3 class="spec-partner-label">{{ effectivePartnerLabel }}</h3>
+        </div>
+        <div class="spec-cols-wrap spec-partner-cols-wrap">
+          <div class="spec-cols spec-partner-cols">
+            <div
+              v-for="(col, i) in effectivePartnerCols"
+              :key="i"
+              class="spec-col spec-col-partner"
+              :class="{ revealed: revealedCols[effectiveCols.length + i] }"
+              :style="{ '--card-accent': col.accent }"
+              :ref="el => colRefs[effectiveCols.length + i] = el"
+            >
+              <div class="spec-col-header">
+                <div class="spec-col-icon-circle"><i :class="'ph ' + col.icon"></i></div>
+                <div class="spec-col-name">{{ col.name }}</div>
+              </div>
+              <div class="spec-col-desc">{{ col.desc }}</div>
             </div>
-            <ul class="spec-col-list">
-              <li v-for="item in col.items" :key="item.label">
-                <i :class="'ph ' + item.icon"></i> {{ item.label }}
-              </li>
-            </ul>
           </div>
         </div>
       </div>
@@ -48,53 +67,49 @@
 </template>
 
 <script setup>
-import { ref, reactive, onMounted, onUnmounted } from 'vue';
+import { ref, reactive, computed, onMounted, onUnmounted } from 'vue';
 import { useI18n } from '../useI18n.js';
 
 const { t } = useI18n();
+
+const props = defineProps({
+  prefix:       { type: String, default: 'spec' },
+  stat1Num:     { type: [String, Number], default: 7 },
+  stat2Num:     { type: [String, Number], default: 1 },
+  cols:         { type: Array, default: () => [] },
+  partnerCols:  { type: Array, default: () => null },
+  partnerLabel: { type: String, default: '' },
+});
+
+const { prefix, stat1Num, stat2Num } = props;
+
+const effectiveCols = computed(() => {
+  if (props.cols.length > 0) return props.cols;
+  return [
+    { icon: 'ph-lightning',       accent: '#2c77fa', name: t('spec.col0.name'), desc: t('spec.col0.desc') },
+    { icon: 'ph-fire',            accent: '#f43f5e', name: t('spec.col1.name'), desc: t('spec.col1.desc') },
+    { icon: 'ph-wifi-high',       accent: '#8b5cf6', name: t('spec.col2.name'), desc: t('spec.col2.desc') },
+    { icon: 'ph-cpu',             accent: '#0891b2', name: t('spec.col3.name'), desc: t('spec.col3.desc') },
+  ];
+});
+
+const effectivePartnerCols = computed(() => {
+  if (props.partnerCols === null) return [
+    { icon: 'ph-drop',             accent: '#3b82f6', name: t('spec.partner0.name'), desc: t('spec.partner0.desc') },
+    { icon: 'ph-wind',             accent: '#10d4c0', name: t('spec.partner1.name'), desc: t('spec.partner1.desc') },
+    { icon: 'ph-fire-extinguisher',accent: '#fb923c', name: t('spec.partner2.name'), desc: t('spec.partner2.desc') },
+  ];
+  return props.partnerCols;
+});
+
+const effectivePartnerLabel = computed(() =>
+  props.partnerLabel || t('spec.partnerLabel')
+);
 
 const sectionEl = ref(null);
 const canvasEl  = ref(null);
 const colRefs   = reactive([]);
 const revealedCols = reactive({});
-
-const cols = [
-  {
-    icon: 'ph-drop',
-    name: 'Instalații utilitare',
-    items: [
-      { icon: 'ph-drop',        label: 'Sanitare' },
-      { icon: 'ph-wind',        label: 'HVAC' },
-      { icon: 'ph-thermometer', label: 'Termice' },
-    ],
-  },
-  {
-    icon: 'ph-fire-extinguisher',
-    name: 'Siguranță',
-    items: [
-      { icon: 'ph-fire-extinguisher', label: 'Stingere incendiu' },
-      { icon: 'ph-siren',             label: 'Detecție incendiu' },
-    ],
-  },
-  {
-    icon: 'ph-lightning',
-    name: 'Electric',
-    items: [
-      { icon: 'ph-lightning', label: 'Curenți tari' },
-      { icon: 'ph-cpu',       label: 'BMS' },
-    ],
-  },
-  {
-    icon: 'ph-wifi-high',
-    name: 'Curent slab',
-    items: [
-      { icon: 'ph-wifi-high',      label: 'Voce-date' },
-      { icon: 'ph-lock-key',       label: 'Control acces' },
-      { icon: 'ph-shield-warning', label: 'Anti-efracție' },
-      { icon: 'ph-camera',         label: 'CCTV' },
-    ],
-  },
-];
 
 let animId = null;
 let io = null;
@@ -171,7 +186,7 @@ onMounted(() => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         const idx = colRefs.indexOf(entry.target);
-        if (idx >= 0) revealedCols[idx] = true;
+        if (idx >= 0) setTimeout(() => { revealedCols[idx] = true; }, idx * 120);
         colIo.unobserve(entry.target);
       }
     });
@@ -287,128 +302,223 @@ onUnmounted(() => {
 .spec-cols {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 1px;
-  border-radius: 16px;
-  overflow: visible;
+  grid-template-rows: auto auto 1fr;
+  column-gap: 20px;
+  row-gap: 24px;
+  align-items: start;
+}
+
+.spec-cols-3 {
+  grid-template-columns: repeat(3, 1fr);
 }
 
 .spec-col {
-  background: rgba(255, 255, 255, 0.02);
+  background: linear-gradient(
+    160deg,
+    rgba(30, 65, 140, 0.55) 0%,
+    rgba(15, 35, 85, 0.65) 60%,
+    rgba(8, 20, 55, 0.7) 100%
+  );
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  padding: 48px 36px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 8px 40px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.09);
+  border-radius: 20px;
+  padding: 48px 36px 44px;
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: span 3;
+  align-items: start;
   opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
-              transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
-              background 0.3s,
-              box-shadow 0.3s;
+  transform: translateY(80px) scale(0.88);
+  transition: opacity 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
+              transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.4s ease,
+              border-color 0.3s;
   position: relative;
+  overflow: hidden;
 }
 
-.spec-col:not(:last-child) {
-  border-right: 1px solid rgba(255, 255, 255, 0.08);
+/* Shimmer sweep on hover */
+.spec-col::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 20%,
+    rgba(255, 255, 255, 0.05) 35%,
+    rgba(255, 255, 255, 0.09) 45%,
+    rgba(255, 255, 255, 0.05) 55%,
+    transparent 80%
+  );
+  border-radius: 20px;
+  transform: translateX(-120%);
+  z-index: 0;
+  pointer-events: none;
 }
 
-.spec-col.revealed { opacity: 1; transform: translateY(0); }
-.spec-col:nth-child(1).revealed { transition-delay: 0ms; }
-.spec-col:nth-child(2).revealed { transition-delay: 120ms; }
-.spec-col:nth-child(3).revealed { transition-delay: 240ms; }
-.spec-col:nth-child(4).revealed { transition-delay: 360ms; }
-
-.spec-col:hover {
-  background: rgba(5, 20, 50, 0.2);
-  box-shadow: inset 0 0 60px rgba(16,212,192,0.08), 0 0 40px rgba(16,212,192,0.12);
+.spec-col:hover::before {
+  animation: specShine 0.65s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
+/* Top accent gradient line */
 .spec-col::after {
   content: '';
   position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 2px;
-  background: rgba(16, 212, 192, 0);
-  transition: background 0.3s;
+  top: 0; left: 10%; right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--card-accent), transparent);
+  opacity: 0.45;
+  transition: opacity 0.3s, left 0.3s, right 0.3s;
 }
 
-.spec-col:hover::after { background: rgba(16, 212, 192, 0.7); }
+.spec-col:hover::after {
+  opacity: 1;
+  left: 0; right: 0;
+}
 
-.spec-col-header {
-  margin-bottom: 24px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+.spec-col > * { position: relative; z-index: 1; }
+
+.spec-col.revealed { opacity: 1; transform: translateY(0) scale(1); }
+
+.spec-col:hover {
+  transform: scale(1.04) translateY(-6px) !important;
+  box-shadow:
+    0 32px 64px rgba(0, 0, 0, 0.45),
+    0 0 0 1px rgba(255, 255, 255, 0.13),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    0 0 50px color-mix(in srgb, var(--card-accent) 20%, transparent);
+  border-color: rgba(255, 255, 255, 0.14);
+  z-index: 10;
+  opacity: 1 !important;
+}
+
+@keyframes specShine {
+  0%   { transform: translateX(-120%); }
+  100% { transform: translateX(120%); }
+}
+
+.spec-cols:has(.spec-col:hover) .spec-col:not(:hover) {
+  opacity: 0.3;
+  transform: scale(0.96) !important;
 }
 
 .spec-col-icon-circle {
   width: 72px;
   height: 72px;
-  border: 1.5px solid rgba(255, 255, 255, 0.15);
+  border: 1.5px solid rgba(255, 255, 255, 0.1);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 32px;
-  color: #fff;
-  margin: 0 0 28px;
-  transition: border-color 0.3s, box-shadow 0.3s, color 0.3s;
+  color: var(--card-accent);
+  background: rgba(255, 255, 255, 0.03);
+  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
 }
 
 .spec-col:hover .spec-col-icon-circle {
-  border-color: #10d4c0;
-  box-shadow: 0 0 32px rgba(16,212,192,0.6), 0 0 8px rgba(16,212,192,0.4), inset 0 0 20px rgba(16,212,192,0.12);
-  color: #10d4c0;
+  transform: scale(1.06);
+  border-color: var(--card-accent);
+  box-shadow: 0 0 24px color-mix(in srgb, var(--card-accent) 40%, transparent);
 }
 
 .spec-col-name {
-  font-size: 28px;
+  font-size: 24px;
   font-weight: 800;
   color: #fff;
   letter-spacing: -0.02em;
-  line-height: 1.1;
+  line-height: 1.15;
   font-family: 'Outfit', sans-serif;
 }
 
-.spec-col-list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  width: 100%;
+.spec-col-desc {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.68);
+  line-height: 1.7;
+  font-weight: 300;
+  font-family: 'Outfit', sans-serif;
 }
 
-.spec-col-list li {
+.spec-partner-wrap {
+  margin-top: 0;
+}
+
+.spec-partner-header {
+  padding-top: 48px;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+.spec-partner-label {
+  font-size: clamp(32px, 3.5vw, 54px);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  color: #fff;
+  margin: 0 0 56px;
+  font-family: 'Outfit', sans-serif;
+}
+
+.spec-partner-cols-wrap {
+  padding-bottom: 100px;
+}
+
+.spec-partner-cols {
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto 1fr;
+  row-gap: 20px;
+}
+
+.spec-col-partner {
+  background: linear-gradient(
+    160deg,
+    rgba(16, 212, 192, 0.10) 0%,
+    rgba(44, 119, 250, 0.05) 60%,
+    rgba(0, 0, 0, 0.04) 100%
+  ) !important;
+  border-color: rgba(16, 212, 192, 0.16) !important;
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: span 2;
+}
+
+.spec-col-partner:hover {
+  box-shadow:
+    0 32px 64px rgba(0, 0, 0, 0.45),
+    0 0 0 1px rgba(16, 212, 192, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    0 0 60px rgba(16, 212, 192, 0.10) !important;
+}
+
+.spec-col-header {
   display: flex;
   align-items: center;
-  gap: 12px;
-  font-size: 18px;
-  font-weight: 400;
-  color: #fff;
-  padding: 14px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  transition: color 0.2s;
-  font-family: 'Outfit', sans-serif;
+  gap: 20px;
 }
 
-.spec-col-list li i {
-  font-size: 18px;
-  color: rgba(255, 255, 255, 0.6);
+.spec-col-header .spec-col-icon-circle {
   flex-shrink: 0;
-  transition: color 0.3s;
 }
 
-.spec-col:hover .spec-col-list li i { color: #10d4c0; }
+.spec-col-partner .spec-col-name {
+  font-size: 20px;
+  font-weight: 700;
+  flex: 1;
+  min-width: 0;
+}
 
 @media (max-width: 1024px) {
   .spec-header { grid-template-columns: 1fr; gap: 40px; }
   .spec-cols   { grid-template-columns: 1fr 1fr; }
+  .spec-partner-cols { grid-template-columns: 1fr 1fr 1fr; }
 }
 
 @media (max-width: 640px) {
   .cnt { padding: 0 24px; }
   .spec-cols { grid-template-columns: 1fr; }
   .spec-cols-wrap { padding: 0 24px 60px; }
+  .spec-partner-cols { grid-template-columns: 1fr; }
 }
 </style>
