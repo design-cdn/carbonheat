@@ -1,14 +1,14 @@
 <template>
-  <section class="hero-page" :class="{ 'has-video': videoSrc }">
+  <section class="hero-page" :class="{ 'has-video': videoSrc }" ref="sectionEl">
     <video
       v-if="videoSrc"
+      ref="videoEl"
       class="hero-video"
       :src="videoSrc"
-      autoplay
       muted
       loop
       playsinline
-      preload="auto"
+      preload="metadata"
     ></video>
     <div v-else class="hero-bg"></div>
     <div class="hero-overlay"></div>
@@ -25,6 +25,7 @@
 </template>
 
 <script setup>
+import { ref, onMounted, onUnmounted } from 'vue';
 import { useI18n } from '../useI18n.js';
 
 const { t } = useI18n();
@@ -35,6 +36,37 @@ const props = defineProps({
 });
 
 const { prefix, videoSrc } = props;
+
+const sectionEl = ref(null);
+const videoEl   = ref(null);
+let io          = null;
+let isVisible   = false;
+
+function syncPlayback() {
+  const v = videoEl.value;
+  if (!v) return;
+  const tabVisible = document.visibilityState === 'visible';
+  if (isVisible && tabVisible) {
+    if (v.paused) v.play().catch(() => {});
+  } else {
+    if (!v.paused) v.pause();
+  }
+}
+
+onMounted(() => {
+  if (!videoSrc) return;
+  io = new IntersectionObserver((entries) => {
+    isVisible = entries[0].isIntersecting;
+    syncPlayback();
+  }, { threshold: 0 });
+  io.observe(sectionEl.value);
+  document.addEventListener('visibilitychange', syncPlayback);
+});
+
+onUnmounted(() => {
+  if (io) io.disconnect();
+  document.removeEventListener('visibilitychange', syncPlayback);
+});
 </script>
 
 <style scoped>

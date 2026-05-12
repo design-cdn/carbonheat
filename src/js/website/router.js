@@ -28,8 +28,7 @@ const routes = [
     },
     {
         path: '/contact',
-        name: 'contact',
-        component: () => import('./pages/Contact.vue'),
+        redirect: '/despre-noi#contact',
     },
 ];
 

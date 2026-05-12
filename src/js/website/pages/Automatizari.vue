@@ -27,10 +27,7 @@
       :projects="autoProjects"
     />
 
-    <SectionCtaSimple
-      prefix="auto.cta"
-      btnHref="mailto:office@carbonheat.ro?subject=Cerere%20ofertă%20automatizări"
-    />
+    <SectionCtaSimple prefix="auto.cta" />
 
     <AppFooter />
   </div>

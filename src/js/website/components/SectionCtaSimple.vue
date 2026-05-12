@@ -7,7 +7,7 @@
         <p class="sec-label">{{ t(prefix + '.label') }}</p>
         <h2 class="cta-h2">{{ t(prefix + '.heading') }}</h2>
         <p class="cta-sub">{{ t(prefix + '.sub') }}</p>
-        <a :href="btnHref" class="btn-outline">{{ t(prefix + '.btn') }} <span style="margin-left:8px">›</span></a>
+        <RouterLink :to="btnTo" class="btn-outline">{{ t(prefix + '.btn') }} <span style="margin-left:8px">›</span></RouterLink>
       </div>
     </div>
   </section>
@@ -19,11 +19,11 @@ import { useI18n } from '../useI18n.js';
 const { t } = useI18n();
 
 const props = defineProps({
-  prefix:  { type: String, default: 'cta' },
-  btnHref: { type: String, default: 'mailto:office@carbonheat.ro' },
+  prefix: { type: String, default: 'cta' },
+  btnTo:  { type: String, default: '/despre-noi#contact' },
 });
 
-const { prefix, btnHref } = props;
+const { prefix, btnTo } = props;
 </script>
 
 <style scoped>

@@ -26,10 +26,7 @@
       :projects="heavyProjects"
     />
 
-    <SectionCtaSimple
-      prefix="heavy.cta"
-      btnHref="mailto:office@carbonheat.ro?subject=Cerere%20ofertă%20infrastructură%20MT"
-    />
+    <SectionCtaSimple prefix="heavy.cta" />
 
     <AppFooter />
   </div>

@@ -7,7 +7,7 @@
         <p class="sec-label">{{ t('cta.label') }}</p>
         <h2 class="cta-h2">{{ t('cta.heading') }}</h2>
         <p class="cta-sub">{{ t('cta.sub') }}</p>
-        <a href="mailto:office@carbonheat.ro" class="btn-outline">{{ t('cta.btn') }} <span style="margin-left:8px">›</span></a>
+        <RouterLink to="/despre-noi#contact" class="btn-outline">{{ t('cta.btn') }} <span style="margin-left:8px">›</span></RouterLink>
       </div>
     </div>
   </section>
@@ -28,6 +28,17 @@ let camera   = null;
 let animId   = null;
 let angle    = 0;
 let io       = null;
+let isVisible    = false;
+let isTabVisible = true;
+
+function shouldRender() { return isVisible && isTabVisible && renderer; }
+function onVisibilityChange() {
+  isTabVisible = document.visibilityState === 'visible';
+  scheduleTick();
+}
+function scheduleTick() {
+  if (animId == null && shouldRender()) animId = requestAnimationFrame(tick);
+}
 
 function getScene() {
   return window.__chScene || null;
@@ -48,7 +59,7 @@ function initRenderer() {
     camera.lookAt(0, 0, 0);
 
     resize();
-    tick();
+    scheduleTick();
   } catch (e) {
     renderer = null;
   }
@@ -64,28 +75,34 @@ function resize() {
 }
 
 function tick() {
-  animId = requestAnimationFrame(tick);
+  animId = null;
   const scene = getScene();
-  if (!scene || !renderer) return;
+  if (!shouldRender() || !scene) return;
   angle += 0.0015;
   const r = 2.5;
   camera.position.set(Math.sin(angle) * r, 0.8, Math.cos(angle) * r);
   camera.lookAt(0, 0, 0);
   renderer.render(scene, camera);
+  animId = requestAnimationFrame(tick);
 }
 
 onMounted(() => {
   window.addEventListener('resize', resize);
+  document.addEventListener('visibilitychange', onVisibilityChange);
 
   io = new IntersectionObserver(entries => {
-    if (entries[0].isIntersecting) initRenderer();
+    isVisible = entries[0].isIntersecting;
+    if (isVisible && !renderer) initRenderer();
+    else scheduleTick();
   }, { threshold: 0.05 });
   io.observe(sectionEl.value);
 });
 
 onUnmounted(() => {
   window.removeEventListener('resize', resize);
-  if (animId) cancelAnimationFrame(animId);
+  document.removeEventListener('visibilitychange', onVisibilityChange);
+  if (animId != null) cancelAnimationFrame(animId);
+  animId = null;
   if (renderer) renderer.dispose();
   if (io) io.disconnect();
 });

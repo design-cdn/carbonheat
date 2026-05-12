@@ -26,7 +26,7 @@
 
     <div class="nav-right">
       <button class="lang-btn" @click="toggleLocale">{{ isRo ? 'EN' : 'RO' }}</button>
-      <RouterLink to="/contact" class="nav-cta">{{ t('nav.cta') }} <span class="nav-cta-arrow">›</span></RouterLink>
+      <RouterLink to="/despre-noi#contact" class="nav-cta">{{ t('nav.cta') }} <span class="nav-cta-arrow">›</span></RouterLink>
     </div>
 
     <button class="lang-btn lang-btn-mobile" @click="toggleLocale">{{ isRo ? 'EN' : 'RO' }}</button>
@@ -64,7 +64,7 @@
         </ul>
 
         <div class="mobile-foot">
-          <RouterLink to="/contact" class="nav-cta" @click="closeMenu" :style="{ '--d': '0.6s' }">
+          <RouterLink to="/despre-noi#contact" class="nav-cta" @click="closeMenu" :style="{ '--d': '0.6s' }">
             {{ t('nav.cta') }} <span class="nav-cta-arrow">›</span>
           </RouterLink>
         </div>

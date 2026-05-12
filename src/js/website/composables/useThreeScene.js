@@ -1,15 +1,42 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
 const GLB_URL = '/assets/models/factory.glb';
 
 export function useThreeScene() {
     let renderer, scene, camera, controls, animId;
+    let canvasEl = null;
+    let io = null;
+    let isVisible = true;
+    let isTabVisible = true;
     // Populated after load — used by AppHero to pass to intro animation
     let buildingInfo = null;
 
+    function shouldRender() { return isVisible && isTabVisible; }
+
+    function onVisibilityChange() {
+        isTabVisible = document.visibilityState === 'visible';
+        scheduleTick();
+    }
+
+    function scheduleTick() {
+        if (animId == null && shouldRender()) {
+            animId = requestAnimationFrame(tick);
+        }
+    }
+
+    function tick() {
+        animId = null;
+        if (!shouldRender()) return;
+        controls.update();
+        renderer.render(scene, camera);
+        animId = requestAnimationFrame(tick);
+    }
+
     function init(canvas) {
+        canvasEl = canvas;
         renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
         renderer.setSize(canvas.clientWidth, canvas.clientHeight);
@@ -53,7 +80,13 @@ export function useThreeScene() {
         scene.add(sun);
 
         window.addEventListener('resize', onResize);
-        startRenderLoop();
+        document.addEventListener('visibilitychange', onVisibilityChange);
+        io = new IntersectionObserver((entries) => {
+            isVisible = entries[0].isIntersecting;
+            scheduleTick();
+        }, { threshold: 0 });
+        io.observe(canvas);
+        scheduleTick();
 
         return loadBuilding();
     }
@@ -61,6 +94,9 @@ export function useThreeScene() {
     function loadBuilding() {
         return new Promise((resolve, reject) => {
             const loader = new GLTFLoader();
+            const draco = new DRACOLoader();
+            draco.setDecoderPath('https://www.gstatic.com/draco/versioned/decoders/1.5.7/');
+            loader.setDRACOLoader(draco);
             loader.load(
                 GLB_URL,
                 (gltf) => {
@@ -120,15 +156,6 @@ export function useThreeScene() {
         });
     }
 
-    function startRenderLoop() {
-        function tick() {
-            animId = requestAnimationFrame(tick);
-            controls.update();
-            renderer.render(scene, camera);
-        }
-        tick();
-    }
-
     function onResize() {
         requestAnimationFrame(() => {
             const w = window.innerWidth;
@@ -145,8 +172,11 @@ export function useThreeScene() {
     function getBuildingInfo() { return buildingInfo; }
 
     function destroy() {
-        cancelAnimationFrame(animId);
+        if (animId != null) cancelAnimationFrame(animId);
+        animId = null;
         window.removeEventListener('resize', onResize);
+        document.removeEventListener('visibilitychange', onVisibilityChange);
+        if (io) { io.disconnect(); io = null; }
         controls.dispose();
         renderer.dispose();
     }

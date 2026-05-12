@@ -28,10 +28,7 @@
       :projects="solarProjects"
     />
 
-    <SectionCtaSimple
-      prefix="solar.cta"
-      btnHref="mailto:office@carbonheat.ro?subject=Cerere%20ofertă%20fotovoltaice"
-    />
+    <SectionCtaSimple prefix="solar.cta" />
 
     <AppFooter />
   </div>

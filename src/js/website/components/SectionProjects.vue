@@ -5,7 +5,6 @@
         <p class="sec-label">{{ t(prefix + '.label') }}</p>
         <h2 class="sec-h2">{{ t(prefix + '.heading') }}</h2>
       </div>
-      <a href="#" class="btn-outline">{{ t(prefix + '.viewAll') }} <span style="margin-left:6px">›</span></a>
     </div>
 
     <div class="proj-track-wrap" ref="trackWrapEl">
@@ -247,25 +246,6 @@ onUnmounted(() => {
   color: #fff;
   margin-bottom: 0;
   font-family: 'Outfit', sans-serif;
-}
-
-.btn-outline {
-  display: inline-flex;
-  align-items: center;
-  padding: 11px 26px;
-  border: 1px solid rgba(44, 119, 250, 0.5);
-  color: rgba(44, 119, 250, 0.9);
-  font: 500 13px/1 'Outfit', sans-serif;
-  text-decoration: none;
-  border-radius: 50px;
-  transition: border-color 0.2s, color 0.2s, background 0.2s;
-  white-space: nowrap;
-}
-
-.btn-outline:hover {
-  border-color: rgba(44, 119, 250, 0.9);
-  color: #fff;
-  background: rgba(44, 119, 250, 0.1);
 }
 
 .proj-track-wrap {
