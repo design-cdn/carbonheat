@@ -42,7 +42,7 @@
             <div class="ci-icon"><i class="ph ph-map-pin"></i></div>
             <div>
               <div class="ci-label">{{ t('footer.hq') }}</div>
-              <div class="ci-val">Str. Pridvorului nr. 62A et. 1, sector 4, București</div>
+              <div class="ci-val">{{ t('footer.address') }}</div>
             </div>
           </div>
           <div class="contact-item">
@@ -105,7 +105,7 @@
           </div>
           <div class="ff-check">
             <input type="checkbox" id="gdpr" required />
-            <label for="gdpr">{{ t('footer.form.gdpr') }} <a href="#">{{ t('footer.form.gdprLink') }}</a>.</label>
+            <label for="gdpr">{{ t('footer.form.gdpr') }} <RouterLink to="/confidentialitate">{{ t('footer.form.gdprLink') }}</RouterLink>.</label>
           </div>
           <button type="submit" class="ff-submit">
             {{ t('footer.form.submit') }} <i class="ph ph-paper-plane-tilt"></i>

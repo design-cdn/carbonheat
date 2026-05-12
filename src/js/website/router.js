@@ -30,6 +30,16 @@ const routes = [
         path: '/contact',
         redirect: '/despre-noi#contact',
     },
+    {
+        path: '/confidentialitate',
+        name: 'privacy',
+        component: () => import('./pages/Privacy.vue'),
+    },
+    {
+        path: '/termeni',
+        name: 'terms',
+        component: () => import('./pages/Terms.vue'),
+    },
 ];
 
 export default createRouter({

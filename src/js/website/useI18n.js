@@ -50,6 +50,7 @@ const FALLBACK = {
         'footer.tagline':  'Echipare completă pentru hale industriale. De la structură la funcțional.',
         'footer.phone':    'Telefon',
         'footer.hq':       'Sediu',
+        'footer.address':  'Str. Drumețului nr. 1 Bis, Sector 3, București, 031891',
         'footer.schedule': 'Program',
         'footer.form.label':     'Scrie-ne',
         'footer.form.title':     'Hai să discutăm<br/>despre proiectul tău.',
@@ -204,6 +205,131 @@ const FALLBACK = {
         'footer.line.general': 'General',
         'footer.privacy': 'Confidențialitate',
         'footer.terms':   'Termeni',
+
+        // ---- WhatsApp ----
+        'wa.label':   'Scrie-ne pe WhatsApp',
+        'wa.prefill': 'Bună ziua! Aș dori informații despre serviciile Carbon Heat.',
+
+        // ---- Cookie consent ----
+        'cookie.title':       'Acest site folosește cookie-uri',
+        'cookie.text':        'Folosim cookie-uri esențiale pentru funcționarea site-ului și, opțional, pentru a înțelege cum este utilizat. Poți alege ce accepți. Vezi',
+        'cookie.policyLink':  'politica de confidențialitate',
+        'cookie.close':       'Închide',
+        'cookie.cat.essential.name': 'Esențiale',
+        'cookie.cat.essential.desc': 'Necesare pentru navigare și funcționalitățile de bază. Nu pot fi dezactivate.',
+        'cookie.cat.analytics.name': 'Analiză',
+        'cookie.cat.analytics.desc': 'Ne ajută să înțelegem cum este folosit site-ul (pagini vizitate, durata vizitelor). Datele sunt agregate și anonimizate.',
+        'cookie.cat.marketing.name': 'Marketing',
+        'cookie.cat.marketing.desc': 'Folosite pentru a măsura eficiența campaniilor și pentru remarketing pe alte platforme.',
+        'cookie.btn.configure': 'Configurează',
+        'cookie.btn.save':      'Salvează preferințele',
+        'cookie.btn.reject':    'Doar esențiale',
+        'cookie.btn.accept':    'Accept toate',
+
+        // ---- Legal pages ----
+        'legal.updated':         'Ultima actualizare',
+        'legal.privacy.eyebrow': 'Confidențialitate',
+        'legal.privacy.title':   'Politica de confidențialitate',
+        'legal.privacy.updated': '12 mai 2026',
+        'legal.privacy.body': `<p class="legal-callout">Această politică explică ce date personale colectează Carbon Heat Solutions, în ce scop și ce drepturi ai în legătură cu ele, în conformitate cu Regulamentul UE 2016/679 (GDPR) și cu Legea nr. 190/2018.</p>
+
+<h2>1. Cine suntem</h2>
+<p><strong>SC Carbon Heat Solutions SRL</strong>, cu sediul în Str. Drumețului nr. 1 Bis, Sector 3, București, 031891, înregistrată la Registrul Comerțului sub nr. J40/4452/2010, CUI RO 36608956 (denumită în continuare „Carbon Heat", „noi"), este operatorul datelor cu caracter personal colectate prin acest site.</p>
+<p><strong>Contact GDPR:</strong> <a href="mailto:office@carbonheat.ro">office@carbonheat.ro</a> · 0786 602 644</p>
+
+<h2>2. Ce date colectăm</h2>
+<p>Colectăm doar datele pe care ni le furnizezi direct sau pe care le generează interacțiunea cu site-ul:</p>
+<ul>
+  <li><strong>Date din formularul de contact:</strong> nume, denumire companie, email, telefon, linia de business pentru care soliciți ofertă, mesajul transmis.</li>
+  <li><strong>Date tehnice anonime:</strong> tipul de browser, sistemul de operare, paginile vizitate, durata vizitei — colectate doar dacă accepți categoria „Analiză" din banner-ul de cookie-uri.</li>
+  <li><strong>Preferințe cookie-uri:</strong> alegerea ta este stocată local în browser, pe durata sesiunii.</li>
+</ul>
+
+<h2>3. De ce le folosim</h2>
+<ul>
+  <li>Pentru a răspunde solicitărilor tale de ofertă sau informații (temei legal: măsuri precontractuale, art. 6(1)(b) GDPR).</li>
+  <li>Pentru a comunica cu tine pe parcursul unui eventual proiect (temei legal: contract).</li>
+  <li>Pentru a îmbunătăți site-ul, dacă ai acceptat cookie-urile de analiză (temei legal: consimțământ, art. 6(1)(a)).</li>
+  <li>Pentru a îndeplini obligații legale (ex.: contabilitate, dacă se ajunge la facturare) — temei legal: art. 6(1)(c).</li>
+</ul>
+
+<h2>4. Cât timp le păstrăm</h2>
+<ul>
+  <li><strong>Date din formular:</strong> maximum 24 de luni de la ultima interacțiune, dacă nu se semnează un contract.</li>
+  <li><strong>Date din contracte și facturi:</strong> 10 ani, conform legislației fiscale.</li>
+  <li><strong>Cookie-uri și preferințe:</strong> doar pe durata sesiunii (se șterg când închizi browserul).</li>
+</ul>
+
+<h2>5. Cu cine le partajăm</h2>
+<p>Datele nu sunt vândute și nu sunt transferate în afara Spațiului Economic European. Putem partaja date strict cu:</p>
+<ul>
+  <li>Furnizorul de hosting al site-ului (în UE).</li>
+  <li>Serviciul de email folosit pentru a comunica cu tine.</li>
+  <li>Autorități publice, dacă există o solicitare legală.</li>
+</ul>
+
+<h2>6. Drepturile tale</h2>
+<p>În conformitate cu GDPR, ai următoarele drepturi:</p>
+<ul>
+  <li>Acces la datele tale și o copie a acestora.</li>
+  <li>Rectificarea datelor inexacte.</li>
+  <li>Ștergerea datelor („dreptul de a fi uitat").</li>
+  <li>Restricționarea prelucrării.</li>
+  <li>Portabilitatea datelor.</li>
+  <li>Opoziție la prelucrare.</li>
+  <li>Retragerea consimțământului în orice moment, fără efecte asupra prelucrărilor anterioare.</li>
+  <li>Plângere la Autoritatea Națională de Supraveghere a Prelucrării Datelor cu Caracter Personal (<a href="https://www.dataprotection.ro" target="_blank" rel="noopener">dataprotection.ro</a>).</li>
+</ul>
+<p>Pentru a-ți exercita aceste drepturi, scrie-ne la <a href="mailto:office@carbonheat.ro">office@carbonheat.ro</a>. Răspundem în maximum 30 de zile.</p>
+
+<h2>7. Securitate</h2>
+<p>Site-ul folosește criptare HTTPS pentru toate transmisiile. Datele sunt stocate pe servere cu acces controlat. Aplicăm măsuri tehnice și organizatorice rezonabile pentru a preveni accesul neautorizat, pierderea sau divulgarea datelor.</p>
+
+<h2>8. Cookie-uri</h2>
+<p>Folosim trei categorii: <strong>Esențiale</strong> (necesare funcționării), <strong>Analiză</strong> (înțelegerea modului de utilizare) și <strong>Marketing</strong> (măsurarea eficienței campaniilor). Doar prima categorie este activă fără consimțământul tău. Poți modifica preferințele oricând, ștergând cookie-urile browserului și reîncărcând site-ul.</p>
+
+<h2>9. Modificări</h2>
+<p>Această politică poate fi actualizată. Vom posta versiunea actualizată cu data ultimei modificări la începutul paginii.</p>`,
+
+        'legal.terms.eyebrow': 'Termeni',
+        'legal.terms.title':   'Termeni și condiții',
+        'legal.terms.updated': '12 mai 2026',
+        'legal.terms.body': `<p class="legal-callout">Prin accesarea și utilizarea site-ului carbonheat.ro accepți termenii descriși mai jos. Dacă nu ești de acord cu aceștia, te rugăm să nu folosești site-ul.</p>
+
+<h2>1. Despre acest site</h2>
+<p>Site-ul carbonheat.ro este operat de <strong>SC Carbon Heat Solutions SRL</strong>, cu sediul în Str. Drumețului nr. 1 Bis, Sector 3, București, 031891, CUI RO 36608956, J40/4452/2010 („Carbon Heat", „noi").</p>
+<p>Site-ul are caracter <strong>informativ și de prezentare</strong>. Conținutul afișat nu reprezintă o ofertă comercială fermă în sensul Codului Civil; orice colaborare se realizează exclusiv pe baza unui contract scris, semnat de ambele părți.</p>
+
+<h2>2. Acceptarea termenilor</h2>
+<p>Utilizarea site-ului — inclusiv navigarea, vizualizarea conținutului sau transmiterea unui formular — constituie acceptarea acestor termeni. Ne rezervăm dreptul de a modifica acești termeni; versiunea actuală este întotdeauna disponibilă pe această pagină.</p>
+
+<h2>3. Proprietate intelectuală</h2>
+<p>Toate elementele acestui site — texte, imagini, logo-uri, video-uri, modele 3D, design și cod sursă — sunt proprietatea Carbon Heat sau a partenerilor noștri și sunt protejate de legislația privind drepturile de autor și mărcile. Este interzisă reproducerea, distribuirea, modificarea sau utilizarea comercială fără acordul nostru scris.</p>
+
+<h2>4. Utilizarea acceptabilă</h2>
+<p>Te angajezi să folosești site-ul cu bună-credință și să nu:</p>
+<ul>
+  <li>Încarci formulare cu date false sau identități false.</li>
+  <li>Încerci să accesezi zone restricționate, să ocolești măsuri de securitate sau să introduci cod malițios.</li>
+  <li>Folosești site-ul pentru spam, publicitate neautorizată sau orice activitate ilegală.</li>
+  <li>Extragi conținutul în mod automat (scraping) fără acordul nostru scris.</li>
+</ul>
+
+<h2>5. Formularul de contact</h2>
+<p>Datele transmise prin formular sunt folosite exclusiv pentru a răspunde solicitării tale și sunt prelucrate conform <a href="/confidentialitate">Politicii de confidențialitate</a>. Răspundem în maximum 24 de ore lucrătoare.</p>
+
+<h2>6. Linkuri externe</h2>
+<p>Site-ul poate conține linkuri către site-uri terțe (de exemplu portofoliul de automatizări pe openpowerelectric.ro). Nu controlăm și nu suntem responsabili pentru conținutul, politicile sau practicile acestor site-uri.</p>
+
+<h2>7. Disclaimer și limitarea răspunderii</h2>
+<p>Conținutul site-ului este oferit „așa cum este". Deși depunem eforturi rezonabile pentru a menține informațiile actualizate, nu garantăm absența erorilor sau caracterul complet al acestora. Pentru proiecte concrete, datele tehnice se confirmă prin contract și documentație de execuție.</p>
+<p>În limitele permise de lege, Carbon Heat nu este responsabil pentru daune indirecte, pierderi comerciale, întreruperi de afacere sau pierderi de date care decurg din utilizarea site-ului.</p>
+
+<h2>8. Legea aplicabilă și jurisdicția</h2>
+<p>Acești termeni sunt guvernați de legea română. Orice neînțelegere se va soluționa pe cale amiabilă; în caz de eșec, competența revine instanțelor judecătorești din București.</p>
+
+<h2>9. Contact</h2>
+<p>Pentru întrebări legate de acești termeni, scrie-ne la <a href="mailto:office@carbonheat.ro">office@carbonheat.ro</a>.</p>`,
 
         // ---- Automatizări cols ----
         'auto.col0.name': 'Tablouri Electrice',
@@ -363,6 +489,7 @@ const FALLBACK = {
         'footer.tagline':  'Complete fitting for industrial halls. From structure to functional.',
         'footer.phone':    'Phone',
         'footer.hq':       'Office',
+        'footer.address':  '1 Bis Drumețului St., Sector 3, Bucharest, Romania, 031891',
         'footer.schedule': 'Hours',
         'footer.form.label':     'Write to us',
         'footer.form.title':     'Let\'s talk about<br/>your project.',
@@ -517,6 +644,131 @@ const FALLBACK = {
         'footer.line.general': 'General',
         'footer.privacy': 'Privacy',
         'footer.terms':   'Terms',
+
+        // ---- WhatsApp ----
+        'wa.label':   'Chat with us on WhatsApp',
+        'wa.prefill': 'Hello! I would like more information about Carbon Heat\'s services.',
+
+        // ---- Cookie consent ----
+        'cookie.title':       'This site uses cookies',
+        'cookie.text':        'We use essential cookies for the site to work and, optionally, to understand how it is used. You choose what to accept. See our',
+        'cookie.policyLink':  'privacy policy',
+        'cookie.close':       'Close',
+        'cookie.cat.essential.name': 'Essential',
+        'cookie.cat.essential.desc': 'Required for navigation and core functionality. Cannot be disabled.',
+        'cookie.cat.analytics.name': 'Analytics',
+        'cookie.cat.analytics.desc': 'Help us understand how the site is used (pages visited, visit duration). Data is aggregated and anonymized.',
+        'cookie.cat.marketing.name': 'Marketing',
+        'cookie.cat.marketing.desc': 'Used to measure campaign effectiveness and for remarketing on other platforms.',
+        'cookie.btn.configure': 'Configure',
+        'cookie.btn.save':      'Save preferences',
+        'cookie.btn.reject':    'Essential only',
+        'cookie.btn.accept':    'Accept all',
+
+        // ---- Legal pages ----
+        'legal.updated':         'Last updated',
+        'legal.privacy.eyebrow': 'Privacy',
+        'legal.privacy.title':   'Privacy Policy',
+        'legal.privacy.updated': 'May 12, 2026',
+        'legal.privacy.body': `<p class="legal-callout">This policy explains what personal data Carbon Heat Solutions collects, for what purpose, and what rights you have regarding it, in accordance with EU Regulation 2016/679 (GDPR) and Romanian Law 190/2018.</p>
+
+<h2>1. Who we are</h2>
+<p><strong>Carbon Heat Solutions SRL</strong>, with registered office at 1 Bis Drumețului St., Sector 3, Bucharest, Romania, 031891, registered with the Trade Register under no. J40/4452/2010, Tax ID RO 36608956 (hereinafter "Carbon Heat", "we"), is the controller of personal data collected through this website.</p>
+<p><strong>GDPR contact:</strong> <a href="mailto:office@carbonheat.ro">office@carbonheat.ro</a> · +40 786 602 644</p>
+
+<h2>2. What we collect</h2>
+<p>We collect only the data you provide directly or that is generated by your interaction with the site:</p>
+<ul>
+  <li><strong>Contact form data:</strong> name, company name, email, phone, the business line you are inquiring about, and your message.</li>
+  <li><strong>Anonymous technical data:</strong> browser type, operating system, pages visited, visit duration — collected only if you accept the "Analytics" category in the cookie banner.</li>
+  <li><strong>Cookie preferences:</strong> your choice is stored locally in your browser, for the duration of the session.</li>
+</ul>
+
+<h2>3. Why we use it</h2>
+<ul>
+  <li>To respond to your requests for quotes or information (legal basis: pre-contractual measures, art. 6(1)(b) GDPR).</li>
+  <li>To communicate during a potential project (legal basis: contract).</li>
+  <li>To improve the site, if you have accepted analytics cookies (legal basis: consent, art. 6(1)(a)).</li>
+  <li>To fulfil legal obligations (e.g., accounting, if invoicing occurs) — legal basis: art. 6(1)(c).</li>
+</ul>
+
+<h2>4. How long we keep it</h2>
+<ul>
+  <li><strong>Form data:</strong> maximum 24 months from last interaction, if no contract is signed.</li>
+  <li><strong>Contract and invoice data:</strong> 10 years, as required by tax law.</li>
+  <li><strong>Cookies and preferences:</strong> session only (cleared when you close your browser).</li>
+</ul>
+
+<h2>5. Who we share with</h2>
+<p>Data is not sold and is not transferred outside the European Economic Area. We share data strictly with:</p>
+<ul>
+  <li>The site's hosting provider (in the EU).</li>
+  <li>The email service we use to communicate with you.</li>
+  <li>Public authorities, where required by law.</li>
+</ul>
+
+<h2>6. Your rights</h2>
+<p>Under the GDPR you have the following rights:</p>
+<ul>
+  <li>Access to your data and a copy of it.</li>
+  <li>Rectification of inaccurate data.</li>
+  <li>Erasure ("right to be forgotten").</li>
+  <li>Restriction of processing.</li>
+  <li>Data portability.</li>
+  <li>Object to processing.</li>
+  <li>Withdraw consent at any time, without affecting prior processing.</li>
+  <li>Lodge a complaint with the Romanian National Supervisory Authority for Personal Data Processing (<a href="https://www.dataprotection.ro" target="_blank" rel="noopener">dataprotection.ro</a>).</li>
+</ul>
+<p>To exercise these rights, write to us at <a href="mailto:office@carbonheat.ro">office@carbonheat.ro</a>. We respond within 30 days.</p>
+
+<h2>7. Security</h2>
+<p>The site uses HTTPS encryption for all transmissions. Data is stored on servers with controlled access. We apply reasonable technical and organizational measures to prevent unauthorized access, loss, or disclosure.</p>
+
+<h2>8. Cookies</h2>
+<p>We use three categories: <strong>Essential</strong> (required for operation), <strong>Analytics</strong> (understanding how the site is used), and <strong>Marketing</strong> (measuring campaign effectiveness). Only the first category is active without your consent. You can change your preferences at any time by clearing the browser cookies and reloading the site.</p>
+
+<h2>9. Changes</h2>
+<p>This policy may be updated. The current version, with the last modification date, is always shown at the top of this page.</p>`,
+
+        'legal.terms.eyebrow': 'Terms',
+        'legal.terms.title':   'Terms & Conditions',
+        'legal.terms.updated': 'May 12, 2026',
+        'legal.terms.body': `<p class="legal-callout">By accessing and using the carbonheat.ro website you agree to the terms described below. If you do not agree with them, please do not use the site.</p>
+
+<h2>1. About this site</h2>
+<p>The site carbonheat.ro is operated by <strong>Carbon Heat Solutions SRL</strong>, with registered office at 1 Bis Drumețului St., Sector 3, Bucharest, Romania, 031891, Tax ID RO 36608956, Trade Register J40/4452/2010 ("Carbon Heat", "we").</p>
+<p>The site is <strong>informational and presentational</strong> in nature. The content displayed does not constitute a firm commercial offer within the meaning of the Romanian Civil Code; any collaboration is conducted exclusively under a written contract signed by both parties.</p>
+
+<h2>2. Acceptance of terms</h2>
+<p>Use of the site — including browsing, viewing content, or submitting a form — constitutes acceptance of these terms. We reserve the right to amend them; the current version is always available on this page.</p>
+
+<h2>3. Intellectual property</h2>
+<p>All elements of this site — text, images, logos, videos, 3D models, design and source code — are the property of Carbon Heat or its partners and are protected by copyright and trademark law. Reproduction, distribution, modification, or commercial use is prohibited without our written consent.</p>
+
+<h2>4. Acceptable use</h2>
+<p>You agree to use the site in good faith and not to:</p>
+<ul>
+  <li>Submit forms with false data or impersonated identities.</li>
+  <li>Attempt to access restricted areas, circumvent security measures, or introduce malicious code.</li>
+  <li>Use the site for spam, unauthorized advertising, or any illegal activity.</li>
+  <li>Scrape content automatically without our written consent.</li>
+</ul>
+
+<h2>5. Contact form</h2>
+<p>Data submitted through the form is used exclusively to respond to your request and is processed in accordance with the <a href="/confidentialitate">Privacy Policy</a>. We respond within 24 business hours.</p>
+
+<h2>6. External links</h2>
+<p>The site may contain links to third-party sites (e.g., the automation portfolio at openpowerelectric.ro). We do not control and are not responsible for the content, policies, or practices of those sites.</p>
+
+<h2>7. Disclaimer and limitation of liability</h2>
+<p>The content of the site is provided "as is". While we make reasonable efforts to keep information up to date, we do not warrant that it is error-free or complete. For concrete projects, technical data is confirmed through contract and execution documentation.</p>
+<p>To the extent permitted by law, Carbon Heat is not liable for indirect damages, business losses, business interruption, or data loss arising from use of the site.</p>
+
+<h2>8. Governing law and jurisdiction</h2>
+<p>These terms are governed by Romanian law. Any disagreement shall be resolved amicably; failing that, the competent courts are those in Bucharest.</p>
+
+<h2>9. Contact</h2>
+<p>For questions about these terms, write to us at <a href="mailto:office@carbonheat.ro">office@carbonheat.ro</a>.</p>`,
 
         // ---- Automatizări cols ----
         'auto.col0.name': 'Electrical Panels',
