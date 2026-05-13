@@ -15,7 +15,7 @@
           <span class="footer-legal-sep">·</span>
           <span>CUI RO 36608956</span>
           <span class="footer-legal-sep">·</span>
-          <span>J40/4452/2010</span>
+          <span>J2016013197408</span>
           <RouterLink to="/confidentialitate">{{ t('footer.privacy') }}</RouterLink>
           <RouterLink to="/termeni">{{ t('footer.terms') }}</RouterLink>
         </div>

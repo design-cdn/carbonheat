@@ -234,7 +234,7 @@ const FALLBACK = {
         'legal.privacy.body': `<p class="legal-callout">Această politică explică ce date personale colectează Carbon Heat Solutions, în ce scop și ce drepturi ai în legătură cu ele, în conformitate cu Regulamentul UE 2016/679 (GDPR) și cu Legea nr. 190/2018.</p>
 
 <h2>1. Cine suntem</h2>
-<p><strong>SC Carbon Heat Solutions SRL</strong>, cu sediul în Str. Drumețului nr. 1 Bis, Sector 3, București, 031891, înregistrată la Registrul Comerțului sub nr. J40/4452/2010, CUI RO 36608956 (denumită în continuare „Carbon Heat", „noi"), este operatorul datelor cu caracter personal colectate prin acest site.</p>
+<p><strong>SC Carbon Heat Solutions SRL</strong>, cu sediul în Str. Drumețului nr. 1 Bis, Sector 3, București, 031891, înregistrată la Registrul Comerțului sub nr. J2016013197408, CUI RO 36608956 (denumită în continuare „Carbon Heat", „noi"), este operatorul datelor cu caracter personal colectate prin acest site.</p>
 <p><strong>Contact GDPR:</strong> <a href="mailto:office@carbonheat.ro">office@carbonheat.ro</a> · 0786 602 644</p>
 
 <h2>2. Ce date colectăm</h2>
@@ -297,7 +297,7 @@ const FALLBACK = {
         'legal.terms.body': `<p class="legal-callout">Prin accesarea și utilizarea site-ului carbonheat.ro accepți termenii descriși mai jos. Dacă nu ești de acord cu aceștia, te rugăm să nu folosești site-ul.</p>
 
 <h2>1. Despre acest site</h2>
-<p>Site-ul carbonheat.ro este operat de <strong>SC Carbon Heat Solutions SRL</strong>, cu sediul în Str. Drumețului nr. 1 Bis, Sector 3, București, 031891, CUI RO 36608956, J40/4452/2010 („Carbon Heat", „noi").</p>
+<p>Site-ul carbonheat.ro este operat de <strong>SC Carbon Heat Solutions SRL</strong>, cu sediul în Str. Drumețului nr. 1 Bis, Sector 3, București, 031891, CUI RO 36608956, J2016013197408 („Carbon Heat", „noi").</p>
 <p>Site-ul are caracter <strong>informativ și de prezentare</strong>. Conținutul afișat nu reprezintă o ofertă comercială fermă în sensul Codului Civil; orice colaborare se realizează exclusiv pe baza unui contract scris, semnat de ambele părți.</p>
 
 <h2>2. Acceptarea termenilor</h2>
@@ -673,7 +673,7 @@ const FALLBACK = {
         'legal.privacy.body': `<p class="legal-callout">This policy explains what personal data Carbon Heat Solutions collects, for what purpose, and what rights you have regarding it, in accordance with EU Regulation 2016/679 (GDPR) and Romanian Law 190/2018.</p>
 
 <h2>1. Who we are</h2>
-<p><strong>Carbon Heat Solutions SRL</strong>, with registered office at 1 Bis Drumețului St., Sector 3, Bucharest, Romania, 031891, registered with the Trade Register under no. J40/4452/2010, Tax ID RO 36608956 (hereinafter "Carbon Heat", "we"), is the controller of personal data collected through this website.</p>
+<p><strong>Carbon Heat Solutions SRL</strong>, with registered office at 1 Bis Drumețului St., Sector 3, Bucharest, Romania, 031891, registered with the Trade Register under no. J2016013197408, Tax ID RO 36608956 (hereinafter "Carbon Heat", "we"), is the controller of personal data collected through this website.</p>
 <p><strong>GDPR contact:</strong> <a href="mailto:office@carbonheat.ro">office@carbonheat.ro</a> · +40 786 602 644</p>
 
 <h2>2. What we collect</h2>
@@ -736,7 +736,7 @@ const FALLBACK = {
         'legal.terms.body': `<p class="legal-callout">By accessing and using the carbonheat.ro website you agree to the terms described below. If you do not agree with them, please do not use the site.</p>
 
 <h2>1. About this site</h2>
-<p>The site carbonheat.ro is operated by <strong>Carbon Heat Solutions SRL</strong>, with registered office at 1 Bis Drumețului St., Sector 3, Bucharest, Romania, 031891, Tax ID RO 36608956, Trade Register J40/4452/2010 ("Carbon Heat", "we").</p>
+<p>The site carbonheat.ro is operated by <strong>Carbon Heat Solutions SRL</strong>, with registered office at 1 Bis Drumețului St., Sector 3, Bucharest, Romania, 031891, Tax ID RO 36608956, Trade Register J2016013197408 ("Carbon Heat", "we").</p>
 <p>The site is <strong>informational and presentational</strong> in nature. The content displayed does not constitute a firm commercial offer within the meaning of the Romanian Civil Code; any collaboration is conducted exclusively under a written contract signed by both parties.</p>
 
 <h2>2. Acceptance of terms</h2>
