@@ -53,10 +53,10 @@ const heavyMarquee = [
   'ISO 14001',
   'ISO 45001',
   'Posturi Trafo',
-  'Rețele MT',
+  'Rețele Medie Tensiune',
   'Tehnica conectare',
   'PRAM',
-  'PIF',
+  'Punere în Funcțiune',
   'Proiectare & Execuție',
 ];
 

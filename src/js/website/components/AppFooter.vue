@@ -8,7 +8,6 @@
           <li><RouterLink to="/infrastructura-grea">{{ t('nav.heavy') }}</RouterLink></li>
           <li><RouterLink to="/automatizari-industriale">{{ t('nav.automation') }}</RouterLink></li>
           <li><RouterLink to="/despre-noi">{{ t('nav.about') }}</RouterLink></li>
-          <li><RouterLink to="/despre-noi#contact">{{ t('nav.cta') }}</RouterLink></li>
         </ul>
         <div class="footer-legal">
           <span>© 2026 SC Carbon Heat Solutions SRL</span>

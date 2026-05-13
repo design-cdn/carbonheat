@@ -71,7 +71,7 @@ const FALLBACK = {
         // ---- Pagina Fotovoltaice ----
         'solar.hero.overline':    'Sisteme fotovoltaice industriale',
         'solar.hero.headline1':   'EPM complet —',
-        'solar.hero.headline2':   ' de la proiectare la PIF.',
+        'solar.hero.headline2':   ' de la proiectare la Punere în Funcțiune.',
         'solar.spec.label':       'Specializări',
         'solar.spec.heading':     '3 specializări.<br/>EPM complet.',
         'solar.spec.intro':       'Carbon Heat livrează proiecte fotovoltaice industriale în formula EPM completă — Engineering, Procurement, Construction. De la proiectarea sistemelor și a structurilor metalice de susținere, la instalațiile electrice CC/CA și până la programarea invertoarelor și punerea în funcțiune.',
@@ -104,7 +104,7 @@ const FALLBACK = {
         'auto.projects.label':   'Portofoliu',
         'auto.projects.heading': 'Proiecte reprezentative',
         'auto.cta.label':        'Vrei să automatizăm hala ta?',
-        'auto.cta.heading':      'Spune-ne despre proiect.',
+        'auto.cta.heading':      'Spune-ne despre proiectul tău.',
         'auto.cta.sub':          'Estimăm tablouri, PLC, integrare BMS și proces de producție. Revenim în 24 de ore.',
         'auto.cta.btn':          'Contactează-ne',
         'auto.features.integrated.title': 'Atelier propriu',
@@ -118,27 +118,27 @@ const FALLBACK = {
 
         // ---- Pagina Infrastructură Grea (Medie Tensiune) ----
         'heavy.hero.overline':    'Infrastructură de medie tensiune',
-        'heavy.hero.headline1':   'Posturi trafo, rețele MT,',
+        'heavy.hero.headline1':   'Posturi trafo, rețele Medie Tensiune,',
         'heavy.hero.headline2':   ' tehnică de conectare.',
         'heavy.spec.label':       'Specializări',
-        'heavy.spec.heading':     '3 specializări.<br/>Doar tehnica MT.',
-        'heavy.spec.intro':       'Carbon Heat realizează infrastructură de medie tensiune pentru hale și parcuri industriale — posturi de transformare, rețele MT și tehnica de conectare cu punere în funcțiune. Toate lucrările sub autorizație ANRE Tip B. Fără lucrări civile.',
+        'heavy.spec.heading':     '3 specializări.<br/>Doar tehnica Medie Tensiune.',
+        'heavy.spec.intro':       'Carbon Heat realizează infrastructură de medie tensiune pentru hale și parcuri industriale — posturi de transformare, rețele Medie Tensiune și tehnica de conectare cu punere în funcțiune. Toate lucrările sub autorizație ANRE Tip B. Fără lucrări civile.',
         'heavy.spec.stat1':       'Specializări',
         'heavy.spec.stat2':       'Contract',
         'heavy.projects.label':   'Portofoliu',
         'heavy.projects.heading': 'Proiecte reprezentative',
-        'heavy.cta.label':        'Vrei posturi trafo sau rețele MT?',
-        'heavy.cta.heading':      'Spune-ne despre proiect.',
-        'heavy.cta.sub':          'Estimăm posturi, rețele MT, conexiuni și PIF. Revenim în 24 de ore.',
+        'heavy.cta.label':        'Vrei posturi trafo sau rețele Medie Tensiune?',
+        'heavy.cta.heading':      'Spune-ne despre proiectul tău.',
+        'heavy.cta.sub':          'Estimăm posturi, rețele Medie Tensiune, conexiuni și Punere în Funcțiune. Revenim în 24 de ore.',
         'heavy.cta.btn':          'Contactează-ne',
         'heavy.features.integrated.title': 'Tehnica completă',
-        'heavy.features.integrated.sub':   'Posturi, rețele MT, conectare și PIF.',
+        'heavy.features.integrated.sub':   'Posturi, rețele Medie Tensiune, conectare și Punere în Funcțiune.',
         'heavy.features.efficiency.title': 'Fără lucrări civile',
         'heavy.features.efficiency.sub':   'Doar infrastructura electrică tehnică.',
         'heavy.features.safe.title':       'ANRE Tip B',
         'heavy.features.safe.sub':         'Proiectare și execuție autorizate, ISO 9001/14001/45001.',
         'heavy.features.future.title':     'Energie pentru industrie',
-        'heavy.features.future.sub':       'Conectare la rețele MT pentru hale și parcuri.',
+        'heavy.features.future.sub':       'Conectare la rețele Medie Tensiune pentru hale și parcuri.',
 
         // ---- Process steps ----
         'process.step0.title': 'Consultare & Evaluare',
@@ -180,7 +180,7 @@ const FALLBACK = {
 
         // ---- Specializations Home defaults ----
         'spec.col0.name': 'Instalații Electrice',
-        'spec.col0.desc': 'Tablouri electrice JT, instalații de forță și iluminat interior/exterior, trasee de cablu și prize industriale. Executate direct cu atestat ANRE Tip A3.',
+        'spec.col0.desc': 'Tablouri electrice Joasă Tensiune, instalații de forță și iluminat interior/exterior, trasee de cablu și prize industriale. Executate direct cu atestat ANRE Tip A3.',
         'spec.col1.name': 'Instalații de Detectare, Semnalizare și Avertizare Incendiu',
         'spec.col1.desc': 'Proiectare și montaj sisteme DSI conform normativelor ISU. Centrale, detectoare, sirene și module de adresare — autorizație ISU pentru proiectare și execuție.',
         'spec.col2.name': 'Instalații de Curenți Slabi',
@@ -345,7 +345,7 @@ const FALLBACK = {
 
         // ---- Automatizări projects ----
         'auto.proj0.name': 'Proiect industrial<br/>tablouri & automatizare',
-        'auto.proj0.desc': 'Tablouri JT, automatizare proces de producție, control distribuit prin PLC.',
+        'auto.proj0.desc': 'Tablouri Joasă Tensiune, automatizare proces de producție, control distribuit prin PLC.',
         'auto.proj1.name': 'Hală industrială<br/>integrare BMS',
         'auto.proj1.desc': 'Programare logică PLC și integrare BMS pentru monitorizarea instalațiilor de hală.',
         'auto.proj2.name': 'Proiect industrial<br/>tablouri & control',
@@ -355,8 +355,8 @@ const FALLBACK = {
         'solar.col0.name': 'Structură Metalică',
         'solar.col0.desc': 'Structuri pentru montaj panouri pe acoperiș (Speed Rail K2, hot-dip zincare) și pe sol (2V10, hot-dip zincare). Calcul, debitare și montaj — adaptate la geometria fiecărui amplasament.',
         'solar.col1.name': 'Instalații Electrice',
-        'solar.col1.desc': 'Tablouri JT, cabluri CC și CA, pat cabluri, priză de pământ și echipotențializare. Instalare și comisionare invertoare, sisteme de monitorizare RS485 și UTP. Autorizație ANRE Tip B Proiectare și Execuție.',
-        'solar.col2.name': 'Programare și PIF',
+        'solar.col1.desc': 'Tablouri Joasă Tensiune, cabluri CC și CA, pat cabluri, priză de pământ și echipotențializare. Instalare și comisionare invertoare, sisteme de monitorizare RS485 și UTP. Autorizație ANRE Tip B Proiectare și Execuție.',
+        'solar.col2.name': 'Programare și Punere în Funcțiune',
         'solar.col2.desc': 'Documentație ATR și CER, DTAC, proiect tehnic verificat MLPTL, dosar utilizare și As-Built. Comisionare, testare și punere în funcțiune până la integrarea cu rețeaua.',
 
         // ---- Fotovoltaice megastat ----
@@ -365,36 +365,36 @@ const FALLBACK = {
 
         // ---- Fotovoltaice projects ----
         'solar.proj0.name': 'Antibiotice Iași<br/>2.5 MW · sol',
-        'solar.proj0.desc': 'Sistem fotovoltaic la sol: structură metalică hot-dip zincare, panouri Tier 1, invertoare, monitorizare, tablouri JT și PIF.',
+        'solar.proj0.desc': 'Sistem fotovoltaic la sol: structură metalică hot-dip zincare, panouri Tier 1, invertoare, monitorizare, tablouri Joasă Tensiune și Punere în Funcțiune.',
         'solar.proj1.name': 'CTPark București BUCH10<br/>1.5 MW',
-        'solar.proj1.desc': 'Proiect EPM complet: structură, instalații electrice CC/CA, invertoare, sisteme de monitorizare RS485/UTP, comisionare și PIF.',
+        'solar.proj1.desc': 'Proiect EPM complet: structură, instalații electrice CC/CA, invertoare, sisteme de monitorizare RS485/UTP, comisionare și Punere în Funcțiune.',
         'solar.proj2.name': 'Unilever Romania<br/>1 MW',
         'solar.proj2.desc': 'Sistem fotovoltaic industrial: structură metalică, panouri, invertoare, instalații electrice complete și documentație ATR/CER.',
 
         // ---- InfrastructuraGrea cols ----
         'heavy.col0.name': 'Posturi Trafo',
         'heavy.col0.desc': 'Posturi de transformare medie tensiune — proiectare, livrare echipamente și execuție conform specificațiilor proiectului. Adaptate pentru hale și parcuri industriale, sub autorizație ANRE Tip B.',
-        'heavy.col1.name': 'Infrastructură Electrică MT',
-        'heavy.col1.desc': 'Rețele și trasee de medie tensiune între punctele de alimentare și posturile trafo. Cabluri MT, dulapuri, sisteme de protecție și automatizare a stațiilor.',
-        'heavy.col2.name': 'Tehnică Conectare & PIF',
+        'heavy.col1.name': 'Infrastructură Electrică Medie Tensiune',
+        'heavy.col1.desc': 'Rețele și trasee de medie tensiune între punctele de alimentare și posturile trafo. Cabluri Medie Tensiune, dulapuri, sisteme de protecție și automatizare a stațiilor.',
+        'heavy.col2.name': 'Tehnică Conectare & Punere în Funcțiune',
         'heavy.col2.desc': 'Realizarea conexiunilor electrice de medie tensiune, testarea echipamentelor și punerea în funcțiune până la integrarea cu sistemul energetic. Documentație ANRE și raportare PRAM.',
 
         // ---- InfrastructuraGrea megastat ----
         'heavy.megastat.eyebrow': 'Medie tensiune',
-        'heavy.megastat.text':    'Posturi & Rețele MT.',
+        'heavy.megastat.text':    'Posturi & Rețele Medie Tensiune.',
         'heavy.megastat.small':   'Tehnica completă, fără lucrări civile.',
 
         // ---- InfrastructuraGrea projects ----
         'heavy.proj0.name': 'Post trafo<br/>parc industrial',
-        'heavy.proj0.desc': 'Post de transformare medie tensiune cu rețea MT și conexiune la sistemul energetic.',
-        'heavy.proj1.name': 'Rețea MT subterană<br/>parc industrial',
-        'heavy.proj1.desc': 'Rețea de cabluri medie tensiune între punctul de alimentare și posturile trafo, cu PIF complet.',
-        'heavy.proj2.name': 'Posturi trafo & PIF<br/>linie de producție',
-        'heavy.proj2.desc': 'Două posturi trafo cu sisteme de protecție și automatizare, conexiuni MT și raportare PRAM.',
+        'heavy.proj0.desc': 'Post de transformare medie tensiune cu rețea Medie Tensiune și conexiune la sistemul energetic.',
+        'heavy.proj1.name': 'Rețea Medie Tensiune subterană<br/>parc industrial',
+        'heavy.proj1.desc': 'Rețea de cabluri medie tensiune între punctul de alimentare și posturile trafo, cu Punere în Funcțiune completă.',
+        'heavy.proj2.name': 'Posturi trafo & Punere în Funcțiune<br/>linie de producție',
+        'heavy.proj2.desc': 'Două posturi trafo cu sisteme de protecție și automatizare, conexiuni Medie Tensiune și raportare PRAM.',
 
         // ---- Home projects ----
         'home.proj0.name': 'CTP BUW24 — Hala LPP<br/>90.000 mp',
-        'home.proj0.desc': 'Instalații electrice complete de forță, tablouri JT, BMS, avertizare incendiu, antiefracție, control acces și voce-date.',
+        'home.proj0.desc': 'Instalații electrice complete de forță, tablouri Joasă Tensiune, BMS, avertizare incendiu, antiefracție, control acces și voce-date.',
         'home.proj1.name': 'CTP Brașov — Hala DIEHL<br/>12.000 mp',
         'home.proj1.desc': 'Antreprenoriat complet instalații: sprinklere, hidrante, termice, sanitare, electrice, BMS, avertizare incendiu, control acces.',
         'home.proj2.name': 'Renault Preciziei<br/>Fit-out producție — 36.000 mp',
