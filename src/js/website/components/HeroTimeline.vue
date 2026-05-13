@@ -39,27 +39,27 @@ const props = defineProps({
 
 const { locale } = useI18n();
 
-const icons = ['ph-lightning', 'ph-wind', 'ph-drop', 'ph-fire-extinguisher', 'ph-cpu'];
+const icons = ['ph-lightning', 'ph-fire-extinguisher', 'ph-shield-check', 'ph-drop', 'ph-wind'];
 
 const labels = {
-  ro: ['Instalații Electrice', 'Instalații HVAC', 'Instalații Sanitare', 'Instalații Stingere Incendiu', 'Building Management Sistems'],
-  en: ['Electrical Systems',  'HVAC Systems',    'Sanitary Systems',    'Fire Suppression',             'Building Management Systems'],
+  ro: ['Instalații Electrice', 'Detectare și Avertizare Incendiu', 'Curenți Slabi', 'Sanitare', 'HVAC'],
+  en: ['Electrical Installations', 'Fire Detection & Alarm', 'Low-Voltage Systems', 'Plumbing', 'HVAC'],
 };
 
 const descriptions = {
   ro: [
     'Distribuție de forță, iluminat tehnologic și prize industriale, cu tablouri și protecții complete.',
-    'Ventilație, climatizare și tratare aer pentru hale și spații tehnice, cu integrare în BMS.',
-    'Apă rece, caldă, canalizare menajeră și pluvială, dimensionate pentru încărcările halei.',
     'Sprinklere, hidranți și detecție automată, conform normativelor ISU și polițelor de asigurare.',
-    'Automatizare și supervizare unitară pentru toate instalațiile, cu raportare și acces la distanță.',
+    'CCTV, voce-date, control acces și efracție — instalații integrate pentru securitate și comunicații în halele industriale.',
+    'Apă rece, caldă, canalizare menajeră și pluvială, dimensionate pentru încărcările halei.',
+    'Ventilație, climatizare și tratare aer pentru hale și spații tehnice, cu integrare în BMS.',
   ],
   en: [
     'Power distribution, technological lighting and industrial sockets, with complete switchboards and protections.',
-    'Ventilation, air conditioning and air handling for halls and technical spaces, integrated with BMS.',
-    'Cold water, hot water, sewage and stormwater drainage, sized for the hall’s loads.',
     'Sprinklers, hydrants and automatic detection, compliant with fire authority and insurance requirements.',
-    'Unified automation and supervision for all systems, with reporting and remote access.',
+    'CCTV, voice-data, access control and intrusion alarms — integrated low-voltage systems for industrial security and communications.',
+    'Cold water, hot water, sewage and stormwater drainage, sized for the hall’s loads.',
+    'Ventilation, air conditioning and air handling for halls and technical spaces, integrated with BMS.',
   ],
 };
 

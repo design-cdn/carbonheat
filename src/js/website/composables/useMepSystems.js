@@ -4,11 +4,11 @@ import { LineGeometry } from 'three/examples/jsm/lines/LineGeometry.js';
 import { LineMaterial } from 'three/examples/jsm/lines/LineMaterial.js';
 
 export const SYSTEMS = [
-    { color: 0xf07828, ro: 'Instalații Electrice',    en: 'Electrical Systems' },
-    { color: 0x10d4d8, ro: 'Ventilație & Climatizare', en: 'HVAC & Climate'     },
+    { color: 0xf07828, ro: 'Instalații Electrice',     en: 'Electrical Systems' },
+    { color: 0xe83030, ro: 'Detectare & Avertizare',   en: 'Fire Detection & Alarm' },
+    { color: 0x9828e0, ro: 'Curenți Slabi',            en: 'Low-Voltage Systems' },
     { color: 0x2888f0, ro: 'Instalații Sanitare',      en: 'Sanitary & Drainage' },
-    { color: 0xe83030, ro: 'Stingere Incendiu',        en: 'Fire Suppression'   },
-    { color: 0x9828e0, ro: 'BMS & Automatizare',       en: 'BMS & Automation'   },
+    { color: 0x10d4d8, ro: 'Ventilație & Climatizare', en: 'HVAC & Climate' },
 ];
 
 export const ZONE_DEFAULTS = {
@@ -540,7 +540,7 @@ export function useMepSystems() {
         if (built) return;
         built = true;
         const { A, B, C } = getZones(zoneVals);
-        const builders = [electricRoutes, hvacRoutes, sanitaryRoutes, fireRoutes, bmsRoutes];
+        const builders = [electricRoutes, fireRoutes, bmsRoutes, sanitaryRoutes, hvacRoutes];
         builders.forEach((fn, i) => {
             const g = new THREE.Group();
             scene.add(g);
