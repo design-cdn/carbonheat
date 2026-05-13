@@ -24,11 +24,11 @@
         <p class="contact-tagline">{{ t('footer.tagline') }}</p>
 
         <div class="contact-list">
-          <a href="tel:+40786602644" class="contact-item">
+          <a href="tel:+40786602647" class="contact-item">
             <div class="ci-icon"><i class="ph ph-phone"></i></div>
             <div>
               <div class="ci-label">{{ t('footer.phone') }}</div>
-              <div class="ci-val">0786 602 644</div>
+              <div class="ci-val">0786 602 647</div>
             </div>
           </a>
           <a href="mailto:office@carbonheat.ro" class="contact-item">

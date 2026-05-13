@@ -140,7 +140,7 @@ const photoFor = (idx) => `/assets/images/team-${(idx % 4) + 1}.jpg`;
 
 // Membri echipă — placeholder (15). TO REPLACE cu date reale + foto de la client.
 const membersData = [
-  { id:  0, roleKey: 'about.role0',  name: 'Alexandru Ionescu',   tel: '+40 786 602 644', email: 'alexandru@carbonheat.ro', lines: ['hale', 'fotovoltaice', 'infrastructura', 'automatizari'] },
+  { id:  0, roleKey: 'about.role0',  name: 'Alexandru Ionescu',   tel: '+40 786 602 647', email: 'alexandru@carbonheat.ro', lines: ['hale', 'fotovoltaice', 'infrastructura', 'automatizari'] },
   { id:  1, roleKey: 'about.role1',  name: 'Maria Constantin',    tel: '+40 745 102 233', email: 'maria@carbonheat.ro',     lines: ['hale', 'fotovoltaice'] },
   { id:  2, roleKey: 'about.role2',  name: 'Andrei Popescu',      tel: '+40 723 845 117', email: 'andrei@carbonheat.ro',    lines: ['hale'] },
   { id:  3, roleKey: 'about.role3',  name: 'Elena Dumitrescu',    tel: '+40 731 998 442', email: 'elena@carbonheat.ro',     lines: ['automatizari', 'hale'] },

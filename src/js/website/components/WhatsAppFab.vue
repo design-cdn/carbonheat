@@ -18,7 +18,7 @@ import { useI18n } from '../useI18n.js';
 
 const { t } = useI18n();
 
-const PHONE = '40786602644';
+const PHONE = '40786602647';
 const link = computed(() => {
   const msg = encodeURIComponent(t('wa.prefill'));
   return `https://wa.me/${PHONE}?text=${msg}`;
